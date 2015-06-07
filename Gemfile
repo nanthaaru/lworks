@@ -1,0 +1,7 @@
+source "https://rubygems.org"
+  gem "cucumber"
+  gem "capybara"
+  gem "rspec"
+  gem "rack-test"
+  gem "selenium-webdriver"
+  gem "spreadsheet"
