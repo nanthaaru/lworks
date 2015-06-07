@@ -1,6 +1,6 @@
 require 'spreadsheet'
 Spreadsheet.client_encoding = 'UTF-8'
-book = Spreadsheet.open '/Users/nantha/Documents/data.xls'
+book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
