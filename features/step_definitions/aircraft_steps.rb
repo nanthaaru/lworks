@@ -106,9 +106,9 @@ And(/^accept browser pop\-up$/) do
   page.driver.browser.switch_to.alert.accept
 end
 
-And(/^user selects newly added "([^"]*)" aircraft$/) do |aircraft_name|
+And(/^user selects newly added "([^"]*)"/) do |aircraft_name|
  p aircraft_name
-  click_link(aircraft_name, :match => :first)
+  click_link(aircraft_name, :exact => true, :match => :first)
   # sleep 15
 end
 

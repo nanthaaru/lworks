@@ -16,7 +16,7 @@ Feature: To verify adding new Assemblies with all details
       | 333444555                 |
 
   Scenario: Verify able to edit existing Assemblies
-    When user selects newly added "333444555" aircraft
+    When user selects newly added "333444555" apu assembly
     And user clicks on "Edit" button
     And user fill-in aircraft "Technical details" section
       | Location | Comments      |
