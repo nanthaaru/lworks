@@ -218,7 +218,7 @@ Feature: To verify adding new Aircraft with all details
 
     Then verify that "Base Maintenance Reserve Rates" are populated
       | Base MRR Engine 1 | Base MRR Engine 2 | Base MRR APU | Base MRR Other | Base MRR Airframe Heavy Maintenance 1 | Base MRR Airframe Heavy Maintenance 2 | Base MRR C Check | LLP MR Escalation (Lease) | General MR Escalation (Lease) | LLP Escalation Factor | General Escalation Factor |
-      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.000                 | 1.000                     |
+      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.0000                | 1.0000                    |
 
     Then verify that "Effective Maintenance Reserve Rates" are populated
       | Effective MRR Engine 1 | Effective MRR Engine 2 | Effective MRR APU | Effective MRR Landing Gear - Left Main | Effective MRR Landing Gear - Right Main | Effective MRR Landing Gear - Left Wing | Effective MRR Landing Gear - Right Wing | Effective MRR Landing Gear - Nose |
@@ -235,24 +235,24 @@ Feature: To verify adding new Aircraft with all details
     And user clicks on "Edit" button
     And user fill-in aircraft "FH & FC" section
       | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
-      | 600                        | 100                         |
+      | 300                        | 50                          |
 #    todo: verify whether the value got updated
     And user clicks on "Save" button
     Then verify that Assembly Utilizations are auto created
       | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
-      | Engine 1                  | 5,000.00 | 3,000.00 | 300.00                     | 100                 |
-      | Engine 2                  | 4,800.00 | 3,200.00 | 300.00                     | 100                 |
-      | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 100                 |
-      | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 100                 |
-      | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 100                 |
-      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 100                 |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 100                 |
-      | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 100                 |
-      | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 100                 |
+      | Engine 1                  | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
+      | Engine 2                  | 4,800.00 | 3,200.00 | 300.00                     | 50                  |
+      | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
+      | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
+      | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
     Then verify that "Base Maintenance Reserve Rates" are populated
       | Base MRR Engine 1 | Base MRR Engine 2 | Base MRR APU | Base MRR Other | Base MRR Airframe Heavy Maintenance 1 | Base MRR Airframe Heavy Maintenance 2 | Base MRR C Check | LLP MR Escalation (Lease) | General MR Escalation (Lease) | LLP Escalation Factor | General Escalation Factor |
-      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.000                 | 1.000                     |
+      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.0000                | 1.0000                    |
 
     Then verify that "Effective Maintenance Reserve Rates" are populated
       | Effective MRR Engine 1 | Effective MRR Engine 2 | Effective MRR APU | Effective MRR Landing Gear - Left Main | Effective MRR Landing Gear - Right Main | Effective MRR Landing Gear - Left Wing | Effective MRR Landing Gear - Right Wing | Effective MRR Landing Gear - Nose |
@@ -260,18 +260,19 @@ Feature: To verify adding new Aircraft with all details
 
     Then verify that "Maintenance Reserves" are populated
       | Total Maintenance Reserve | Engine 1    | Engine 2    | APU        | C Check   | Heavy Maint 1 Airframe | Heavy Maint 2 Airframe | Landing Gear - Left Main | Landing Gear - Right Main | Landing Gear - Nose | Landing Gear - Left Wing | Landing Gear - Right Wing | Landing Gear Total |
-      | $2,141,000.00             | $900,000.00 | $900,000.00 | $30,000.00 | $2,000.00 | $3,000.00              | $6,000.00              | $100,000.00              | $30,000.00                | $80,000.00          | $50,000.00               | $40,000.00                | $300,000.00        |
+      | $1,991,000.00             | $900,000.00 | $900,000.00 | $30,000.00 | $2,000.00 | $3,000.00              | $6,000.00              | $50,000.00               | $15,000.00                | $40,000.00          | $25,000.00               | $20,000.00                | $150,000.00        |
 
-    And user selects newly added "URA-5037" assembly utilization
+    And user selects assembly utilization "Engine 1"
+
     Then verify that "Assembly Utilization MR values" are populated
       | Maintenance Reserve (Assembly) | Total MR (Assembly) |
       | $900,000.00                    | $900,000.00         |
 
-  Scenario: Verify that on updaitng FH & FC in Assembly Utilization updates Assembly Utilization and MR
+  Scenario: Verify that on updating FH & FC in Assembly Utilization updates Assembly Utilization and MR
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user selects newly added "2013-03-003" monthly utilization
-    And user selects newly added "URA-5037" assembly utilization
+    And user selects assembly utilization "Engine 1"
     And user clicks on "Edit" button
     And user fill-in aircraft "FH & FC" section
       | Running Hours During Month | Cycles During Month |
@@ -288,11 +289,7 @@ Feature: To verify adding new Aircraft with all details
     And user selects newly added "2013-03-003" monthly utilization
     Then verify that "Aircraft FH & FC MR values" are
       | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
-      | 300.00                     | 100                         |
-
-    Then verify that "Base Maintenance Reserve Rates" are populated
-      | Base MRR Engine 1 | Base MRR Engine 2 | Base MRR APU | Base MRR Other | Base MRR Airframe Heavy Maintenance 1 | Base MRR Airframe Heavy Maintenance 2 | Base MRR C Check | LLP MR Escalation (Lease) | General MR Escalation (Lease) | LLP Escalation Factor | General Escalation Factor |
-      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.000                 | 1.000                     |
+      | 300                        | 50                          |
 
     Then verify that Assembly Utilizations are auto created
       | Report Item Type | TSN      | CSN      | Running Hours During Month | Cycles During Month |
@@ -300,7 +297,7 @@ Feature: To verify adding new Aircraft with all details
 
     Then verify that "Base Maintenance Reserve Rates" are populated
       | Base MRR Engine 1 | Base MRR Engine 2 | Base MRR APU | Base MRR Other | Base MRR Airframe Heavy Maintenance 1 | Base MRR Airframe Heavy Maintenance 2 | Base MRR C Check | LLP MR Escalation (Lease) | General MR Escalation (Lease) | LLP Escalation Factor | General Escalation Factor |
-      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.000                 | 1.000                     |
+      | $3,000.00         | $3,000.00         | $100.00      | $5,000.00      | $3,000.00                             | $6,000.00                             | $2,000.00        | 200.00%                   | 100.00%                       | 1.0000                | 1.0000                    |
 
     Then verify that "Effective Maintenance Reserve Rates" are populated
       | Effective MRR Engine 1 | Effective MRR Engine 2 | Effective MRR APU | Effective MRR Landing Gear - Left Main | Effective MRR Landing Gear - Right Main | Effective MRR Landing Gear - Left Wing | Effective MRR Landing Gear - Right Wing | Effective MRR Landing Gear - Nose |
@@ -308,4 +305,4 @@ Feature: To verify adding new Aircraft with all details
 
     Then verify that "Maintenance Reserves" are populated
       | Total Maintenance Reserve | Engine 1    | Engine 2    | APU        | C Check   | Heavy Maint 1 Airframe | Heavy Maint 2 Airframe | Landing Gear - Left Main | Landing Gear - Right Main | Landing Gear - Nose | Landing Gear - Left Wing | Landing Gear - Right Wing | Landing Gear Total |
-      | $1,841,000.00             | $600,000.00 | $900,000.00 | $30,000.00 | $2,000.00 | $3,000.00              | $6,000.00              | $100,000.00              | $30,000.00                | $80,000.00          | $50,000.00               | $40,000.00                | $300,000.00        |
+      | $1,691,000.00             | $600,000.00 | $900,000.00 | $30,000.00 | $2,000.00 | $3,000.00              | $6,000.00              | $50,000.00               | $15,000.00                | $40,000.00          | $25,000.00               | $20,000.00                | $150,000.00        |

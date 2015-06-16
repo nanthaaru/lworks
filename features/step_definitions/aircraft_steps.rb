@@ -97,11 +97,11 @@ And(/^user clicks on "([^"]*)" button$/) do |btn_name|
   click_button(btn_name,:match => :first)
   # sleep 60
 #   get_label_from_page
-if btn_name == "Save"
-  sleep 100000
-# #   # get_label_from_page
-# # #   # p "---------------"
-end
+# if btn_name == "Save"
+#   sleep 100000
+# # #   # get_label_from_page
+# # # #   # p "---------------"
+# end
   end
 
 Then(/^verify that newly added records is displayed$/) do |table|
@@ -178,4 +178,9 @@ Then(/^verify that "([^"]*)" are/) do |arg, table|
       actual.should include(value)
     end
   end
+end
+
+And(/^user selects assembly utilization "([^"]*)"$/) do |arg|
+  element = page.find('th.dataCell', :text => "",:match => :first )
+  page.click_link element.text
 end
