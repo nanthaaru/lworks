@@ -6,9 +6,9 @@ Feature: To verify adding new Assemblies Engine with all details
 
   Scenario: Verify able to add new Assemblies
     When user clicks on "New" button
-    And user select "Master" for "Record Type of new record"
+    And user select "Landing Gear" for "Record Type of new record"
     And user clicks on "Continue" button
-    And user fill-in "Assemblies_Engine" information from datasheet
+    And user fill-in "Assemblies_LandingGear_Center" information from datasheet
     And user clicks on "Save" button
     And user navigates to "Assemblies" tab
     Then verify that newly added records is displayed
