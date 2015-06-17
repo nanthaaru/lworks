@@ -6,3 +6,4 @@ source "https://rubygems.org"
   gem "selenium-webdriver"
   gem "spreadsheet"
   gem "pry"
+  gem 'capybara-screenshot'
