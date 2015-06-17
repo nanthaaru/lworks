@@ -1,4 +1,4 @@
-Feature: To verify adding new Aircraft with all details
+Feature: To verify Regression scenarios to test Application flow
 
   Background:
     When user logins and navigates to home page
