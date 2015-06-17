@@ -11,6 +11,6 @@ Feature: To verify adding payment to an existing Aircraft with all details
     And user clicks on "New Payment" button
     And user fill-in "Payment" information from datasheet
     Then verify that newly added records is displayed
-      | Invoice  |
-      | SW101-A001-MR |
+      | Payment Name  |Amount|
+      | SW101-A001-MR |      |
 

@@ -306,3 +306,104 @@ Feature: To verify adding new Aircraft with all details
     Then verify that "Maintenance Reserves" are populated
       | Total Maintenance Reserve | Engine 1    | Engine 2    | APU        | C Check   | Heavy Maint 1 Airframe | Heavy Maint 2 Airframe | Landing Gear - Left Main | Landing Gear - Right Main | Landing Gear - Nose | Landing Gear - Left Wing | Landing Gear - Right Wing | Landing Gear Total |
       | $1,691,000.00             | $600,000.00 | $900,000.00 | $30,000.00 | $2,000.00 | $3,000.00              | $6,000.00              | $50,000.00               | $15,000.00                | $40,000.00          | $25,000.00               | $20,000.00                | $150,000.00        |
+
+  #TC 18
+  Scenario: Verify that on updating FH & FC in Monthly Utilization,
+  it doesn't update Assembly FH & FC which was updated in Assembly utilization.
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user selects newly added "2013-03-003" monthly utilization
+    And user clicks on "Edit" button
+    And user fill-in aircraft "FH & FC" section
+      | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
+      | 400                        | 75                          |
+    And user clicks on "Save" button
+    Then verify that Assembly Utilizations are auto created
+      | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
+      | Engine 2                  | 4,800.00 | 3,200.00 | 400.00                     | 75                  |
+      | APU                       | 5,000.00 | 3,000.00 | 400.00                     | 75                  |
+      | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 400.00                     | 75                  |
+      | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Engine 1                  | 5,000.00 | 3,000.00 | 200.00                     | 25                  |
+
+
+  Scenario: Verify that on Approving Monthly Utilization TSN and CSN on Aircraft gets updated
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    Then verify that "TSN & CSN" are populated before approval
+      | TSN      | CSN   |
+      | 7,000.00 | 4,000 |
+
+    And user selects newly added "2013-03-003" monthly utilization
+    And user clicks on "Edit" button
+    And user fill-in aircraft "Status to Approval" section
+      | Status             |
+      | Approved By Lessor |
+    And user clicks on "Save" button
+    And user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    Then verify that "TSN & CSN" are populated after approval
+      | TSN      | CSN   |
+      | 7,400.00 | 4,075 |
+
+  Scenario: Verify that after Monthly Utilization approval will not be able to update Monthly Utilization FH & FC
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user selects newly added "2013-03-003" monthly utilization
+    And user clicks on "Edit" button
+    And user fill-in aircraft "FH & FC" section
+      | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
+      | 250                        | 40                          |
+    And user clicks on "Save" button
+
+    Then verify following error message is displayed "Approval status and Utilization cannot be changed once the report is approved."
+
+
+  Scenario: Verify that on Creating Invoice and Payment NMR/CMR of Aircraft is updated.
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+      | Notional Maintenance Reserve (Total) | NMR Engine 1 | NMR Engine 2 | NMR APU     | NMR 20 Month C Check | NMR Heavy Maintenance 1 | NMR Heavy Maintenance 2 | Cumulative Unpaid Maintenance Reserve | NMR Engine 1 LLP | NMR Engine 2 LLP | NMR Landing Gear - Left Main | NMR Landing Gear - Left Wing | NMR Landing Gear - Nose | NMR Landing Gear - Right Main | NMR Landing Gear - Right Wing |
+      | $947,600.00                          | $200,000.00  | $210,000.00  | $180,000.00 | $8,000.00            | $24,000.00              | $35,000.00              | $2,076,000.00                         | $140,000.00      | $135,000.00      | $3,500.00                    | $4,000.00                    | $2,600.00               | $2,800.00                     | $2,700.00                     |
+
+    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+      | Cash Maintenance Reserve (Total) | CMR Engine 1 | CMR Engine 2 | CMR APU    | CMR 20 Month C Check | CMR Heavy Maintenance 1 | CMR Heavy Maintenance 2 | CMR Engine 1 LLP | CMR Engine 2 LLP | CMR Landing Gear - Left Main | CMR Landing Gear - Left Wing | CMR Landing Gear - Nose | CMR Landing Gear - Right Main | CMR Landing Gear - Right Wing |
+      | $199,800.00                      | $35,000.00   | $40,000.00   | $20,000.00 | $3,000.00            | $12,000.00              | $15,000.00              | $28,000.00       | $32,000.00       | $3,000.00                    | $2,800.00                    | $3,000.00               | $2,800.00                     | $3,200.00                     |
+
+    And user selects newly added "2013-03-003" monthly utilization
+    And user clicks on "New Invoice" button
+    And user select "Aircraft MR" for "Record Type of new record"
+    And user clicks on "Continue" button
+    And user fill-in "Invoice_Aircraft" information from regression
+    And user clicks on "Save" button
+    And user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user selects newly added "2013-03-003" monthly utilization
+#    Then verify that newly added records is displayed
+#      | Invoice Name |
+#      | 8429-A003-MR |
+    And user selects newly added "8429-A003-MR" Invoice
+    And user clicks on "New Payment" button
+    And user fill-in "Payment" information from regression
+    And user clicks on "Save" button
+    And user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+
+    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+      | Notional Maintenance Reserve (Total) | NMR Engine 1 | NMR Engine 2 | NMR APU     | NMR 20 Month C Check | NMR Heavy Maintenance 1 | NMR Heavy Maintenance 2 | Cumulative Unpaid Maintenance Reserve | NMR Engine 1 LLP | NMR Engine 2 LLP | NMR Landing Gear - Left Main | NMR Landing Gear - Left Wing | NMR Landing Gear - Nose | NMR Landing Gear - Right Main | NMR Landing Gear - Right Wing |
+      | $1,044,348.55                        | $228,901.73  | $267,803.47  | $181,926.78 | $8,096.34            | $24,144.51              | $35,289.02              | $2,076,000.00                         | $140,000.00      | $135,000.00      | $7,112.72                    | $4,000.00                    | $5,490.17               | $3,883.82                     | $2,700.00                     |
+
+    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+      | Cash Maintenance Reserve (Total) | CMR Engine 1 | CMR Engine 2 | CMR APU    | CMR 20 Month C Check | CMR Heavy Maintenance 1 | CMR Heavy Maintenance 2 | CMR Engine 1 LLP | CMR Engine 2 LLP | CMR Landing Gear - Left Main | CMR Landing Gear - Left Wing | CMR Landing Gear - Nose | CMR Landing Gear - Right Main | CMR Landing Gear - Right Wing |
+      | $296,548.55                      | $63,901.73   | $97,803.47   | $21,926.78 | $3,096.34            | $12,144.51              | $15,289.02              | $28,000.00       | $32,000.00       | $6,612.72                    | $2,800.00                     | $5,890.17               | $3,883.82                     | $3,200.00                     |
+
+    And user selects newly added "2013-03-003" monthly utilization
+    And user selects newly added "8429-A003-MR" Invoice
+    Then verify that newly added records is displayed
+      | Payment Name | Amount      |
+      | 8429-A003-MR | $100,000.00 |
+

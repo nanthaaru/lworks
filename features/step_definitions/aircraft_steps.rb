@@ -84,8 +84,8 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
   work_sheet.drop(1).each do |row|
     field_name = row[colindex]
     field_value = row[colindex+1]
-    p field_name
-    p field_value
+    # p field_name
+    # p field_value
     break if field_name == nil
     if field_value != nil
       form_fill(field_name, field_value)
@@ -95,13 +95,13 @@ end
 
 And(/^user clicks on "([^"]*)" button$/) do |btn_name|
   click_button(btn_name,:match => :first)
-  # sleep 60
+  sleep 2
 #   get_label_from_page
-# if btn_name == "Save"
-#   sleep 100000
+if btn_name == "New Monthly Utilization"
+  sleep 60
 # # #   # get_label_from_page
 # # # #   # p "---------------"
-# end
+end
   end
 
 Then(/^verify that newly added records is displayed$/) do |table|
@@ -180,7 +180,11 @@ Then(/^verify that "([^"]*)" are/) do |arg, table|
   end
 end
 
-And(/^user selects assembly utilization "([^"]*)"$/) do |arg|
-  element = page.find('th.dataCell', :text => "",:match => :first )
-  page.click_link element.text
+And(/^user selects assembly utilization "([^"]*)"$/) do |item_type|
+  element = page.find('td.dataCell', :text => item_type,:match => :first )
+  page.click_link element.find(:xpath,"../th").text
+end
+
+Then(/^verify following error message is displayed "([^"]*)"$/) do |error_msg|
+  page.find('.pbError').text.should include(error_msg)
 end
