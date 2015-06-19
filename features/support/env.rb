@@ -8,7 +8,7 @@ require 'capybara-screenshot/cucumber'
 
 Capybara.default_driver = :selenium
 Capybara.default_wait_time = 120
-Capybara.app_host = "https://whatismyip.com/"
+Capybara.app_host = "https://na14.salesforce.com"
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
