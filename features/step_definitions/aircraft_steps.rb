@@ -10,7 +10,7 @@ Given(/^user logins and navigates to home page$/) do
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
-  if page.find('input', :title => "Email me a verification code" ) != nil
+  if page.find('input', :text => "Email me a verification code" ) != nil
     page.click_button 'save'
     sleep 15
     verification_code = reademail
