@@ -1,5 +1,6 @@
 require 'spreadsheet'
 require 'pry'
+require 'gmail'
 
 Spreadsheet.client_encoding = 'UTF-8'
 book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
@@ -9,6 +10,13 @@ Given(/^user logins and navigates to home page$/) do
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
+  if page.find('input', :title => "Email me a verification code" ) != nil
+    page.click_button 'save'
+    sleep 15
+    verification_code = reademail
+    page.fill_in 'code',verification_code
+    page.click_button 'save'
+  end
   page.click_link 'Home'
 end
 
@@ -187,4 +195,11 @@ end
 
 Then(/^verify following error message is displayed "([^"]*)"$/) do |error_msg|
   page.find('.pbError').text.should include(error_msg)
+end
+
+def reademail()
+  gmail = Gmail.connect('nanthalw', 'lworks123')
+  # binding.pry
+  string_index = gmail.inbox.emails(:unread, :from => "support@salesforce.com")[0].message.raw_source.index('Verification Code:')
+  verification_code = gmail.inbox.emails(:unread, :from => "support@salesforce.com")[0].message.raw_source[string_index+19, string_index+24]
 end
