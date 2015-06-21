@@ -10,7 +10,7 @@ Given(/^user logins and navigates to home page$/) do
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
-  if page.should have_selector("input[type=submit][value='Email me a verification code']")
+  if page.find(".verifyform").exist?
     page.click_button 'save'
     sleep 15
     verification_code = reademail
