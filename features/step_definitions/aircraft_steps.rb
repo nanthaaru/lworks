@@ -13,9 +13,9 @@ Given(/^user logins and navigates to home page$/) do
   # if page.find(".verifyform" , :match => :first).exists?
   #   page.click_button 'save'
     # sleep 15
-    verification_code = reademail
-    page.fill_in 'code', :with => verification_code
-    page.click_button 'save'
+    # verification_code = reademail
+    # page.fill_in 'code', :with => verification_code
+    # page.click_button 'save'
   # end
   page.click_link 'Home'
 end
