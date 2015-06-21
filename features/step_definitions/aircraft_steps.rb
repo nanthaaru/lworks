@@ -10,9 +10,9 @@ Given(/^user logins and navigates to home page$/) do
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
-  if page.find(".verifyform").exist?
-    page.click_button 'save'
-    sleep 15
+  if page.find(".verifyform" , :match => :first).exist?
+    # page.click_button 'save'
+    # sleep 15
     verification_code = reademail
     page.fill_in 'code', :with => verification_code
     page.click_button 'save'
