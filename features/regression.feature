@@ -181,6 +181,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "New" button
     And user fill-in "Maintenance_Program" information from regression
     And user clicks on "Save" button
+    And user navigates to "Home" tab
     And user navigates to "Maintenance Program" tab
     Then verify that newly added records is displayed
       | Maintenance Program Name |
@@ -211,8 +212,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
@@ -245,8 +246,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
@@ -324,8 +325,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 400.00                     | 75                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 400.00                     | 75                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Engine 1                  | 5,000.00 | 3,000.00 | 200.00                     | 25                  |
@@ -405,5 +406,5 @@ Feature: To verify Regression scenarios to test Application flow
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added records is displayed
       | Payment Name | Amount      |
-      | 8429-A003-MR | $100,000.00 |
+      | MR-2015-06 | $100,000.00 |
 
