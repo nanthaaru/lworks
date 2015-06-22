@@ -212,8 +212,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
@@ -246,8 +246,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
@@ -325,8 +325,8 @@ Feature: To verify Regression scenarios to test Application flow
       | APU                       | 5,000.00 | 3,000.00 | 400.00                     | 75                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 400.00                     | 75                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
-      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Center     | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
+      | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Engine 1                  | 5,000.00 | 3,000.00 | 200.00                     | 25                  |
