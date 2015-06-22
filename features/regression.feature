@@ -400,11 +400,102 @@ Feature: To verify Regression scenarios to test Application flow
 
     Then verify that "Notional Maintenance Reserve Account Balance" are populated
       | Cash Maintenance Reserve (Total) | CMR Engine 1 | CMR Engine 2 | CMR APU    | CMR 20 Month C Check | CMR Heavy Maintenance 1 | CMR Heavy Maintenance 2 | CMR Engine 1 LLP | CMR Engine 2 LLP | CMR Landing Gear - Left Main | CMR Landing Gear - Left Wing | CMR Landing Gear - Nose | CMR Landing Gear - Right Main | CMR Landing Gear - Right Wing |
-      | $296,548.55                      | $63,901.73   | $97,803.47   | $21,926.78 | $3,096.34            | $12,144.51              | $15,289.02              | $28,000.00       | $32,000.00       | $6,612.72                    | $2,800.00                     | $5,890.17               | $3,883.82                     | $3,200.00                     |
+      | $296,548.55                      | $63,901.73   | $97,803.47   | $21,926.78 | $3,096.34            | $12,144.51              | $15,289.02              | $28,000.00       | $32,000.00       | $6,612.72                    | $2,800.00                    | $5,890.17               | $3,883.82                     | $3,200.00                     |
 
     And user selects newly added "2013-03-003" monthly utilization
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added records is displayed
       | Payment Name | Amount      |
-      | MR-2015-06 | $100,000.00 |
+      | MR-2015-06   | $100,000.00 |
 
+  Scenario: Verify that able to clear all test data
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user selects newly added "2013-03-003" monthly utilization
+    And user selects newly added "8429-A003-MR" Invoice
+    And user selects newly added "MR-2015-06" Payment
+    And user clicks on "Delete" button
+    And accept browser pop-up
+    And user selects newly added "8429-A003-MR" Invoice
+    And user clicks on "Delete" button
+    And accept browser pop-up
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user selects newly added "2013-03-003" monthly utilization
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Assemblies" tab
+    And user selects newly added "111222333" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "88844433A" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "333444555" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "222000777" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "250033322" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "511090888" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "432675588" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "66600088A" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "533894888" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Leases" tab
+    And user selects newly added "Orange Lease" lease
+    And user clicks on "Edit" button
+    And user fill-in aircraft "Technical details" section
+      | Aircraft |
+      |          |
+    And user clicks on "Save" button
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Operators" tab
+    And user selects newly added "OrangeAir" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Aircraft Condition Terms" tab
+    And user selects newly added "Orange Return" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Maintenance Program" tab
+    And user selects newly added "Maintenance_100" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    When user navigates to "Interpolation Table" tab
+    And user selects newly added "ratio_table_300" lease
+    And user selects newly added "Adjust_200" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+    And user clicks on "Delete" button
+    And accept browser pop-up
