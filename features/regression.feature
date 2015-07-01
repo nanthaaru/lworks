@@ -405,15 +405,15 @@ Feature: To verify Regression scenarios to test Application flow
     And user selects newly added "2013-03-003" monthly utilization
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added records is displayed
-      | Payment Name | Amount      |
-      | Aircraft MR-2015-06   | $100,000.00 |
+      | Payment Name        | Amount      |
+      | Aircraft MR-2015-07 | $100,000.00 |
 
   Scenario: Verify that able to clear all test data
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user selects newly added "2013-03-003" monthly utilization
     And user selects newly added "8429-A003-MR" Invoice
-    And user selects newly added "Aircraft MR-2015-06" Payment
+    And user selects newly added "Aircraft MR-2015-07" Payment
     And user clicks on "Delete" button
     And accept browser pop-up
     And user selects newly added "8429-A003-MR" Invoice
