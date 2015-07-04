@@ -408,6 +408,7 @@ Feature: To verify Regression scenarios to test Application flow
       | Payment Name        | Amount      |
       | Aircraft MR-2015-07 | $100,000.00 |
 
+  @ignore
   Scenario: Verify that able to clear all test data
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
