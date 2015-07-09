@@ -4,6 +4,7 @@ Feature: To verify adding new Aircraft with all details
     When user logins and navigates to home page
     And user navigates to "Aircraft" tab
 
+  @ignore
   Scenario: Verify able to add new Aircraft
     When user clicks on "New" button
     And user fill-in "Aircraft" information from datasheet
@@ -13,6 +14,7 @@ Feature: To verify adding new Aircraft with all details
       | Aircraft Name    | MSN       | Aircraft Type | Status  |
       | SouthWest (A321) | SouthWest | A321          | Pending |
 
+  @ignore
   Scenario: Verify able to edit existing Aircraft
     When user selects newly added "SouthWest (A321)" aircraft
     And user clicks on "Edit" button
@@ -21,6 +23,7 @@ Feature: To verify adding new Aircraft with all details
       | 532    | 3                       |
     And user clicks on "Save" button
 
+  @ignore
   Scenario: Verify able delete newly added Aircraft
     When user selects newly added "SouthWest (A321)" aircraft
     And user clicks on "Delete" button

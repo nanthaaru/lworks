@@ -54,6 +54,7 @@ def form_fill(field_name, value)
         end
       else
         if page.find_by_id(element_id)[:type] == 'checkbox'
+          page.find_by_id(element_id).click
           # p page.find_by_id(element_id).class
           # page.fill_in element_id, :with => value
         end
@@ -112,9 +113,16 @@ if btn_name == "New Monthly Utilization"
 end
   end
 
-Then(/^verify that newly added records is displayed$/) do |table|
+Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do |section_title, table|
+
+  section = page.find('h3', :text => section_title, :exact => true, :match => :first)
+  section_id = section[:id]
+  section_id = section_id.sub('title','body')
+  p section_id
+  section_table = page.find_by_id(section_id)
+  datarow = section_table.all('tr.dataRow')
   header = page.all('table.list tr.headerRow th').map(&:text)
-  datarow = page.all('table.list tr.dataRow')
+  # datarow = page.all('table.list tr.dataRow')
   table.hashes.zip(datarow).each do |row,data|
     row.each do |key,value|
       header.should include(key)
@@ -202,4 +210,18 @@ def reademail()
   # binding.pry
   string_index = gmail.inbox.emails(:unread, :from => "support@salesforce.com")[0].message.raw_source.index('Verification Code:')
   verification_code = gmail.inbox.emails(:unread, :from => "support@salesforce.com")[0].message.raw_source[string_index+19, string_index+24]
+end
+
+And(/^verify the pop\-up text "([^"]*)"$/) do |msg_text|
+  actual = page.driver.browser.switch_to.alert.text
+  p actual
+  actual.should include(msg_text)
+end
+
+Then(/^verify following field level error message is displayed "([^"]*)"$/) do |error_msg|
+  page.find('.errorMsg').text.should include(error_msg)
+end
+
+Then(/^verify following message is displayed "([^"]*)"$/) do |msg|
+  page.find('.messageText').text.should include(msg)
 end

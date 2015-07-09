@@ -4,6 +4,7 @@ Feature: To verify adding new Assemblies Engine with all details
     When user logins and navigates to home page
     And user navigates to "Assemblies" tab
 
+  @ignore
   Scenario: Verify able to add new Assemblies
     When user clicks on "New" button
     And user select "Landing Gear" for "Record Type of new record"
@@ -15,6 +16,7 @@ Feature: To verify adding new Assemblies Engine with all details
       | Constituent Assembly Name |
       | 111222333                 |
 
+  @ignore
   Scenario: Verify able to edit existing Assemblies
     When user selects newly added "111222333" aircraft
     And user clicks on "Edit" button

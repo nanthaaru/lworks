@@ -4,6 +4,7 @@ Feature: To verify adding new Assemblies with all details
     When user logins and navigates to home page
     And user navigates to "Assemblies" tab
 
+  @ignore
   Scenario: Verify able to add new Assemblies
     When user clicks on "New" button
     And user select "APU" for "Record Type of new record"
@@ -15,6 +16,7 @@ Feature: To verify adding new Assemblies with all details
       | Constituent Assembly Name |
       | 333444555                 |
 
+  @ignore
   Scenario: Verify able to edit existing Assemblies
     When user selects newly added "333444555" apu assembly
     And user clicks on "Edit" button
@@ -23,7 +25,7 @@ Feature: To verify adding new Assemblies with all details
       | Chennai  | Test Comments |
     And user clicks on "Save" button
 
-  @manual
+  @ignore @manual
   Scenario: Verify able delete newly added Assemblies
     When user selects newly added "333444555" aircraft
     And user clicks on "Delete" button
