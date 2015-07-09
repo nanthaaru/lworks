@@ -26,7 +26,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
-    Then verify that "TSLV & CSLV" are reset
+    Then verify that following values are populated in "Operating Metrics" section
       | Time Since Last C-Check | Cycles Since Last C-Check |
       | 0.00                    | 0                         |
 
@@ -45,11 +45,11 @@ Feature: To verify Regression scenarios to test Application flow
     And accept browser pop-up
     And user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
-    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+    Then verify that following values are populated in "Notional Maintenance Reserve Account Balance" section
       | Notional Maintenance Reserve (Total) | NMR Engine 1 | NMR Engine 2 | NMR APU     | NMR 20 Month C Check | NMR Heavy Maintenance 1 | NMR Heavy Maintenance 2 | Cumulative Unpaid Maintenance Reserve | NMR Engine 1 LLP | NMR Engine 2 LLP | NMR Landing Gear - Left Main | NMR Landing Gear - Left Wing | NMR Landing Gear - Nose | NMR Landing Gear - Right Main | NMR Landing Gear - Right Wing |
       | $1,041,348.55                        | $227,901.73  | $266,803.47  | $181,926.78 | $8,096.34            | $24,144.51              | $35,289.02              | $2,076,000.00                         | $139,500.00      | $134,500.00      | $7,112.72                    | $4,000.00                    | $5,490.17               | $3,883.82                     | $2,700.00                     |
 
-    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+    Then verify that following values are populated in "Cash Maintenance Reserve Account Balance" section
       | Cash Maintenance Reserve (Total) | CMR Engine 1 | CMR Engine 2 | CMR APU    | CMR 20 Month C Check | CMR Heavy Maintenance 1 | CMR Heavy Maintenance 2 | CMR Engine 1 LLP | CMR Engine 2 LLP | CMR Landing Gear - Left Main | CMR Landing Gear - Left Wing | CMR Landing Gear - Nose | CMR Landing Gear - Right Main | CMR Landing Gear - Right Wing |
       | $293,548.55                      | $62,901.73   | $96,803.47   | $21,926.78 | $3,096.34            | $12,144.51              | $15,289.02              | $27,500.00       | $31,500.00       | $6,612.72                    | $2,800.00                    | $5,890.17               | $3,883.82                     | $3,200.00                     |
 
@@ -89,7 +89,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Assemblies" tab
     And user selects newly added "111222333" Assembly
-    Then verify that "TSLV & CSLV" are reset
+    Then verify that following values are populated in "Operating Metrics" section
       | TSLV | CSLV |
       | 0.00 | 0    |
 
@@ -114,11 +114,11 @@ Feature: To verify Regression scenarios to test Application flow
     And accept browser pop-up
     And user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
-    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+    Then verify that following values are populated in "Notional Maintenance Reserve Account Balance" section
       | Notional Maintenance Reserve (Total) | NMR Engine 1 | NMR Engine 2 | NMR APU     | NMR 20 Month C Check | NMR Heavy Maintenance 1 | NMR Heavy Maintenance 2 | Cumulative Unpaid Maintenance Reserve | NMR Engine 1 LLP | NMR Engine 2 LLP | NMR Landing Gear - Left Main | NMR Landing Gear - Left Wing | NMR Landing Gear - Nose | NMR Landing Gear - Right Main | NMR Landing Gear - Right Wing |
       | $1,039,848.55                        | $226,901.73  | $266,803.47  | $181,926.78 | $8,096.34            | $24,144.51              | $35,289.02              | $2,076,000.00                         | $139,000.00      | $134,500.00      | $7,112.72                    | $4,000.00                    | $5,490.17               | $3,883.82                     | $2,700.00                     |
 
-    Then verify that "Notional Maintenance Reserve Account Balance" are populated
+    Then verify that following values are populated in "Cash Maintenance Reserve Account Balance" section
       | Cash Maintenance Reserve (Total) | CMR Engine 1 | CMR Engine 2 | CMR APU    | CMR 20 Month C Check | CMR Heavy Maintenance 1 | CMR Heavy Maintenance 2 | CMR Engine 1 LLP | CMR Engine 2 LLP | CMR Landing Gear - Left Main | CMR Landing Gear - Left Wing | CMR Landing Gear - Nose | CMR Landing Gear - Right Main | CMR Landing Gear - Right Wing |
       | $292,048.55                      | $61,901.73   | $96,803.47   | $21,926.78 | $3,096.34            | $12,144.51              | $15,289.02              | $27,000.00       | $31,500.00       | $6,612.72                    | $2,800.00                    | $5,890.17               | $3,883.82                     | $3,200.00                     |
 
