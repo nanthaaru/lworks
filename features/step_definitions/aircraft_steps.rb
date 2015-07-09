@@ -171,7 +171,7 @@ Then(/^verify that Assembly Utilizations are auto created$/) do |table|
   step "verify that newly added records is displayed", table
 end
 
-Then(/^verify that "([^"]*)" are/) do |arg, table|
+Then(/^verify that following values are populated in "([^"]*)" section$/) do |arg, table|
   table.hashes.each do |row|
     row.each do |key,value|
       elements = page.all('td.labelCol', text: key)
@@ -224,4 +224,16 @@ end
 
 Then(/^verify following message is displayed "([^"]*)"$/) do |msg|
   page.find('.messageText').text.should include(msg)
+end
+
+
+Then(/^verify that newly added record is displayed in the page$/) do | table|
+  header = page.all('table.list tr.headerRow th').map(&:text)
+  datarow = page.all('table.list tr.dataRow')
+  table.hashes.zip(datarow).each do |row,data|
+    row.each do |key,value|
+      header.should include(key)
+      data.text.should include(value)
+    end
+  end
 end
