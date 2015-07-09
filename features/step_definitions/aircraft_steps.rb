@@ -163,12 +163,12 @@ And(/^user fill\-in aircraft "([^"]*)" section$/) do |arg, table|
 end
 
 Then(/^verify that Aircraft status is changed to assigned$/) do |table|
-  step "verify that newly added records is displayed", table
+  step "verify that newly added record is displayed in the page", table
 end
 
 
 Then(/^verify that Assembly Utilizations are auto created$/) do |table|
-  step "verify that newly added records is displayed", table
+  step "verify that newly added record is displayed in the page", table
 end
 
 Then(/^verify that following values are populated in "([^"]*)" section$/) do |arg, table|
@@ -227,7 +227,7 @@ Then(/^verify following message is displayed "([^"]*)"$/) do |msg|
 end
 
 
-Then(/^verify that newly added record is displayed in the page$/) do | table|
+Then(/^verify that newly added record is displayed in the page$/) do |table|
   header = page.all('table.list tr.headerRow th').map(&:text)
   datarow = page.all('table.list tr.dataRow')
   table.hashes.zip(datarow).each do |row,data|

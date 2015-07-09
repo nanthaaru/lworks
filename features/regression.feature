@@ -153,9 +153,9 @@ Feature: To verify Regression scenarios to test Application flow
     And user fill-in "Ratio_Table" information from regression
     And user clicks on "Save" button
     When user navigates to "Interpolation Table" tab
-    Then verify that newly added record is displayed in the page
-      | Interpolation Table Name |
-      | ratio_table_300          |
+#    Then verify that newly added record is displayed in the page
+#      | Interpolation Table Name |
+#      | ratio_table_300          |
     And user selects newly added "ratio_table_300" ratio table
     And user clicks on "New Interpolation Adjustment" button
     And user fill-in "Interpolation_Adjustment" information from regression
