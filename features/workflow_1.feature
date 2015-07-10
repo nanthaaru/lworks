@@ -160,6 +160,8 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "New Interpolation Adjustment" button
     And user fill-in "Interpolation_Adjustment" information from regression
     And user clicks on "Save" button
+    When user navigates to "Interpolation Table" tab
+    And user selects newly added "ratio_table_300" ratio table
     Then verify that newly added record is displayed under section "Interpolation Adjustments"
       | Interpolation Adjustment Name | Derate Percentage | FH To FC Ratio | Adjustment Factor |
       | Adjust_200                    | 5                 | 10.00          | 30.0000           |
