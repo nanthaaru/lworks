@@ -218,6 +218,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
+    And user selects newly added "2015-04-028" rent
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name |
       | 8429-A001-R  |
@@ -277,18 +278,6 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Send PDF" button
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
 
-    And user selects newly added "2015-04-028" rent
-    And user clicks on "New Invoice" button
-    And user select "Rent" for "Record Type of new record"
-    And user clicks on "Continue" button
-    And user fill-in "Rent_Invoice" information from regression
-    And user clicks on "Save" button
-    When user navigates to "Leases" tab
-    And user selects newly added "Orange Lease" lease
-    And user selects newly added "2015-04-028" rent
-    Then verify that newly added record is displayed under section "Invoices"
-      | Invoice Name |
-      | 8429-A028-R  |
 
   @ignore
   Scenario: Verify that able to clear all test data

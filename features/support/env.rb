@@ -10,10 +10,10 @@ Capybara.default_driver = :selenium
 Capybara.default_wait_time = 120
 Capybara.app_host = "https://na14.salesforce.com"
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, :browser => :firefox)
 end
 
-Capybara::Screenshot.register_filename_prefix_formatter(:cucumber) do |fault|
+Capybara::Screenshot.register_filename_prefix_formatter(:selenium) do |fault|
   'my_screenshot'
 end
 

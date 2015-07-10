@@ -7,6 +7,7 @@ book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
+  page.driver.browser.manage.window.maximize
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
@@ -59,8 +60,10 @@ def form_fill(field_name, value)
           # page.fill_in element_id, :with => value
         end
     end
-
   end
+    if page.find_by_id(element_id).tag_name == 'textarea'
+      page.fill_in element_id, :with => value
+    end
   end
     end
 end
