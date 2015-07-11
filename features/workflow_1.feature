@@ -425,6 +425,13 @@ Feature: To verify Regression scenarios to test Application flow
       | Aircraft MR-2015-07 | $100,000.00 |
 
   @ignore
+  Scenario: Verify that able to clear Invoice
+    When user navigates to "Invoices" tab
+    And user selects newly added "8429-A001-R" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
   Scenario: Verify that able to clear Lease
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
@@ -479,33 +486,5 @@ Feature: To verify Regression scenarios to test Application flow
     And accept browser pop-up
 
     And user selects newly added "533894888" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Operator
-    When user navigates to "Operators" tab
-    And user selects newly added "OrangeAir" lease
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Aircraft Condition Terms
-    When user navigates to "Aircraft Condition Terms" tab
-    And user selects newly added "Orange Return" lease
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Maintenance Program
-    When user navigates to "Maintenance Program" tab
-    And user selects newly added "Maintenance_100" lease
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Interpolation table
-    When user navigates to "Interpolation Table" tab
-    And user selects newly added "ratio_table_300" lease
     And user clicks on "Delete" button
     And accept browser pop-up

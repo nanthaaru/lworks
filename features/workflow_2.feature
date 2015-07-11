@@ -244,3 +244,31 @@ Feature: To verify Regression scenarios to test Application flow
       | nanthalw@gmail.com |
     And user clicks on "Send PDF" button
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
+
+  @ignore
+  Scenario: Verify that able to clear Operator
+    When user navigates to "Operators" tab
+    And user selects newly added "OrangeAir" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Aircraft Condition Terms
+    When user navigates to "Aircraft Condition Terms" tab
+    And user selects newly added "Orange Return" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Maintenance Program
+    When user navigates to "Maintenance Program" tab
+    And user selects newly added "Maintenance_100" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Interpolation table
+    When user navigates to "Interpolation Table" tab
+    And user selects newly added "ratio_table_300" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
