@@ -479,6 +479,9 @@ Feature: To verify Regression scenarios to test Application flow
 #    delete
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
+    And user selects newly added "8429-A001-R" Invoice
+    And user clicks on "Delete" button
+    And accept browser pop-up
     And user clicks on "Edit" button
     And user fill-in aircraft "Technical details" section
       | Aircraft |

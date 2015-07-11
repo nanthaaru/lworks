@@ -279,17 +279,4 @@ Feature: To verify Regression scenarios to test Application flow
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
 
 
-  @ignore
-  Scenario: Verify that able to clear all test data
-    When user navigates to "Aircraft" tab
-    And user selects newly added "8429 (A340)" aircraft
-    And user selects newly added "C-Check-2015-06-28-8429" Aircraft Maintenance Event
-    And user clicks on "Edit" button
-    And user fill-in aircraft "Technical details" section
-      | TSN/CSN Accuracy Certified |
-      | Checked                    |
-    And user clicks on "Save" button
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
 

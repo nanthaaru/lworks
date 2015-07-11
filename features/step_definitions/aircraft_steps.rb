@@ -32,40 +32,51 @@ def get_id_from_label(table)
   end
 end
 
-def form_fill(field_name, value)
+def form_fill(field_name, value,element_id)
+  # p element_id
+  # binding.pry
   # p field_name
   # p value
-  label = page.find('label', :text => field_name, :exact => true, :match => :first)
+  # label = page.find('label', :text => field_name, :exact => true, :match => :first)
   # document.getElementById("00Nd00000075Q7c").parentNode.className
   # document.getElementById("00Nd0000007eY4A").parentNode.className
-  element_id = label[:for]
+  # element_id = label[:for]
+  # p Time.now.utc.iso8601.gsub('-', '').gsub(':', '')
+  # a = Time.new
+  # p "%.6f" % a.to_f
+  element = page.find_by_id(element_id)
   if field_name != 'Owner'
-  if page.find_by_id(element_id).tag_name == 'select'
+  if element.tag_name == 'select'
     # p page.find_by_id(element_id).class
     # option = first(element_id).text
     # select option, :from => element_id
-    page.select value, :from => element_id
+
+    # element.select value, :from => element_id
+    element.select value
   else
-    if page.find_by_id(element_id).tag_name == 'input'
-      if page.find_by_id(element_id)[:type] == 'text'
-        if page.find_by_id(element_id).class == 'dateInput'
-          page.fill_in element_id, :with => value
+    if element.tag_name == 'input'
+      if element[:type] == 'text'
+        if element.class == 'dateInput'
+          # element.fill_in element_id, :with => value
+          element.set value
         else
-            page.fill_in element_id, :with => value
+          # element.fill_in element_id, :with => value
+          element.set value
         end
       else
-        if page.find_by_id(element_id)[:type] == 'checkbox'
-          page.find_by_id(element_id).click
+        if element[:type] == 'checkbox'
+          element.click
           # p page.find_by_id(element_id).class
           # page.fill_in element_id, :with => value
         end
     end
   end
-    if page.find_by_id(element_id).tag_name == 'textarea'
-      page.fill_in element_id, :with => value
+    if element.tag_name == 'textarea'
+      # element.fill_in element_id, :with => value
+      element.set value
     end
   end
-    end
+  end
 end
 
 def get_label_from_page
@@ -85,12 +96,21 @@ When(/^user fill\-in "([^"]*)" information from datasheet/) do |screen|
     # p field_name
     # p field_value
     if field_value != nil
-      form_fill(field_name, field_value)
+      # form_fill(field_name, field_value)
     end
   end
 end
 
 When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
+  label_list = page.all('label', :text => '')
+  element = Hash.new
+  label_list.each do |label|
+    label_text = label.text.sub('* ', '')
+    element[label_text] = label[:for]
+    # p label_text
+  end
+
+ # binding.pry
   work_sheet = book.worksheet 'Regression'
   colindex = work_sheet.row(0).index(screen)
   work_sheet.drop(1).each do |row|
@@ -99,8 +119,8 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     # p field_name
     # p field_value
     break if field_name == nil
-    if field_value != nil
-      form_fill(field_name, field_value)
+    if field_value != nil  && field_name != nil
+      form_fill(field_name, field_value, element[field_name])
     end
   end
 end
@@ -160,7 +180,9 @@ And(/^user fill\-in aircraft "([^"]*)" section$/) do |arg, table|
   # table is a table.hashes.keys # => [:Line #, :Number Of Landing Gears]
   table.hashes.each do |row|
     row.each do |key,value|
-      form_fill(key,value)
+      label = page.find('label', :text => key, :exact => true, :match => :first)
+      element_id = label[:for]
+      form_fill(key,value,element_id)
     end
   end
 end
@@ -174,29 +196,41 @@ Then(/^verify that Assembly Utilizations are auto created$/) do |table|
   step "verify that newly added record is displayed in the page", table
 end
 
-Then(/^verify that following values are populated in "([^"]*)" section$/) do |arg, table|
+Then(/^verify that following values are populated in "([^"]*)" section$/) do |section_name, table|
+
+  section = page.find('.pbSubheader', text: section_name)
+  td_list = page.find(:xpath, "//div[preceding-sibling::div[@id='"+ section[:id]+ "']]",:match => :first).all('td')
+  fields = Hash.new
+  (0...td_list.length).step(2) do |i|
+    fields[td_list[i].text] = td_list[i+1].text
+  end
+  # binding.pry
   table.hashes.each do |row|
     row.each do |key,value|
-      elements = page.all('td.labelCol', text: key)
-      # binding.pry
-      if elements.count > 1
-        elements.each do |element|
-          if element.text == key
-            elements = element
-            break
-          end
-        end
-      else
-        elements = elements.first
-      end
-      if elements.find(:xpath,"../td[1]").text == key
-        actual = elements.find(:xpath,"../td[2]").text
-      else
-        actual = elements.find(:xpath,"../td[4]").text
-      end
-      actual.should include(value)
+      # elements = page.all('td.labelCol', text: key)
+      fields[key].should include(value)
     end
-  end
+    end
+  #
+  #     # binding.pry
+  #     if elements.count > 1
+  #       elements.each do |element|
+  #         if element.text == key
+  #           elements = element
+  #           break
+  #         end
+  #       end
+  #     else
+  #       elements = elements.first
+  #     end
+  #     if elements.find(:xpath,"../td[1]").text == key
+  #       actual = elements.find(:xpath,"../td[2]").text
+  #     else
+  #       actual = elements.find(:xpath,"../td[4]").text
+  #     end
+  #     actual.should include(value)
+  #   end
+  # end
 end
 
 And(/^user selects assembly utilization "([^"]*)"$/) do |item_type|
@@ -231,6 +265,7 @@ end
 
 
 Then(/^verify that newly added record is displayed in the page$/) do |table|
+  sleep 2
   header = page.all('table.list tr.headerRow th').map(&:text)
   datarow = page.all('table.list tr.dataRow')
   table.hashes.zip(datarow).each do |row,data|
