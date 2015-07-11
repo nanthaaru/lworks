@@ -246,6 +246,71 @@ Feature: To verify Regression scenarios to test Application flow
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
 
   @ignore
+  Scenario: Verify that able to clear Invoice
+    When user navigates to "Invoices" tab
+    And user selects newly added "8429-A003-R" lease
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Lease
+    When user navigates to "Leases" tab
+    And user selects newly added "Orange Lease" lease
+    And user clicks on "Edit" button
+    And user fill-in aircraft "Technical details" section
+      | Aircraft |
+      |          |
+    And user clicks on "Save" button
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Aircraft
+    When user navigates to "Aircraft" tab
+    And user selects newly added "8429 (A340)" aircraft
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
+  Scenario: Verify that able to clear Assemblies
+    When user navigates to "Assemblies" tab
+    And user selects newly added "111222333" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "88844433A" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "333444555" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "222000777" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "250033322" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "511090888" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "432675588" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "66600088A" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+    And user selects newly added "533894888" assembly
+    And user clicks on "Delete" button
+    And accept browser pop-up
+
+  @ignore
   Scenario: Verify that able to clear Operator
     When user navigates to "Operators" tab
     And user selects newly added "OrangeAir" lease

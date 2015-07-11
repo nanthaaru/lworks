@@ -293,9 +293,9 @@ Feature: To verify Regression scenarios to test Application flow
       | Running Hours During Month | Cycles During Month |
       | 200                        | 25                  |
     And user clicks on "Save" button
-    Then verify that following values are populated in "Assembly Utilization Detail" section
-      | Running Hours During Month | Cycles During Month |
-      | 200                        | 25                  |
+#    Then verify that following values are populated in "Assembly Utilization Detail" section
+#      | Running Hours During Month | Cycles During Month |
+#      | 200                        | 25                  |
 
     Then verify that following values are populated in "Reserve Calculations" section
       | Maintenance Reserve (Assembly) | Total MR (Assembly) |
@@ -402,7 +402,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user selects newly added "2013-03-003" monthly utilization
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name |
-      | 8429-A001-R  |
+      | 8429-A003-R  |
     And user selects newly added "8429-A003-MR" Invoice
     And user clicks on "New Payment" button
     And user fill-in "Payment" information from regression
@@ -424,67 +424,3 @@ Feature: To verify Regression scenarios to test Application flow
       | Payment Name        | Amount      |
       | Aircraft MR-2015-07 | $100,000.00 |
 
-  @ignore
-  Scenario: Verify that able to clear Invoice
-    When user navigates to "Invoices" tab
-    And user selects newly added "8429-A001-R" lease
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Lease
-    When user navigates to "Leases" tab
-    And user selects newly added "Orange Lease" lease
-    And user clicks on "Edit" button
-    And user fill-in aircraft "Technical details" section
-      | Aircraft |
-      |          |
-    And user clicks on "Save" button
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Aircraft
-    When user navigates to "Aircraft" tab
-    And user selects newly added "8429 (A340)" aircraft
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-  @ignore
-  Scenario: Verify that able to clear Assemblies
-    When user navigates to "Assemblies" tab
-    And user selects newly added "111222333" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "88844433A" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "333444555" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "222000777" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "250033322" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "511090888" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "432675588" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "66600088A" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
-    And user selects newly added "533894888" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
