@@ -240,3 +240,35 @@ Then(/^verify that newly added record is displayed in the page$/) do |table|
     end
   end
 end
+
+And(/^navigate to "8429 \(A340\)" aircraft if exists$/) do |arg|
+  step "navigate to record if it exists", arg
+end
+
+And(/^navigate to record if it exists$/) do |arg|
+   if find_link(arg).visible
+     click_link(arg)
+   end
+end
+
+
+And(/^navigate to "([^"]*)" monthly utilization if exists$/) do |arg|
+  step "navigate to record if it exists", arg
+end
+
+And(/^navigate to "([^"]*)" invoice if exists$/) do |arg|
+  step "navigate to record if it exists", arg
+end
+
+And(/^navigate to "([^"]*)" Payment if exists$/) do |arg|
+  step "navigate to record if it exists", arg
+end
+
+And(/^delete invoice "([^"]*)"$/) do |arg|
+  step "user navigates to 'Aircraft' tab"
+  step "navigate to '8429 (A340)' aircraft if exists"
+  step "navigate to '2013-03-003' monthly utilization if exists"
+  step "navigate to '8429-A003-MR' invoice if exists"
+  step "navigate to 'Aircraft MR-2015-07' payment and delete if exists"
+  step "user clicks on 'Delete' button"
+end

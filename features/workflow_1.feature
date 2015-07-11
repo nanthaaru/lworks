@@ -425,10 +425,10 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user selects newly added "2013-03-003" monthly utilization
-    And user selects newly added "8429-A003-MR" Invoice
-    And user selects newly added "Aircraft MR-2015-07" Payment
-    And user clicks on "Delete" button
-    And accept browser pop-up
+    And user selects newly added "8429-A003-MR" invoice
+#    And user selects newly added "Aircraft MR-2015-07" Payment
+#    And user clicks on "Delete" button
+#    And accept browser pop-up
     And user selects newly added "8429-A003-MR" Invoice
     And user clicks on "Delete" button
     And accept browser pop-up
@@ -475,6 +475,8 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Delete" button
     And accept browser pop-up
 
+#  8429-A001-R
+#    delete
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
     And user clicks on "Edit" button
