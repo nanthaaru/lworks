@@ -26,7 +26,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
-    Then verify that following values are populated in "Operating Metrics" section
+    Then verify that following values are populated in "Operational Metrics" section
       | Time Since Last C-Check | Cycles Since Last C-Check |
       | 0.00                    | 0                         |
 
@@ -57,7 +57,7 @@ Feature: To verify Regression scenarios to test Application flow
     Then verify that newly added record is displayed under section "Aircraft Maintenance Event Invoices"
       | Invoice Date | Status |
       | 7/5/2015     | Paid   |
-    Then verify that following values are populated in "Operating Metrics" section
+    Then verify that following values are populated in "Operational Metrics" section
       | Actual Claim Amount |
       | $3,000.00           |
 
@@ -89,7 +89,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Assemblies" tab
     And user selects newly added "111222333" Assembly
-    Then verify that following values are populated in "Operating Metrics" section
+    Then verify that following values are populated in "Operational Metrics" section
       | TSLV | CSLV |
       | 0.00 | 0    |
 
@@ -100,12 +100,6 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "New Assembly Maintenance Event Invoice" button
     And user fill-in "Assembly_Maintenance_Event_Invoice" information from regression
     And user clicks on "Save" button
-#    When user navigates to "Aircraft" tab
-#    And user selects newly added "8429 (A340)" aircraft
-#    And user selects newly added "C-Check-2015-06-28-8429" aircraft maintenace event
-#    Then verify that newly added records is displayed
-#     | Invoice Date | Status | Last Modified Date |
-#     | 7/5/2015     | Open   | 7/5/2015           |
     And user clicks on "Submit for Approval" button
     And accept browser pop-up
     And user selects newly added "Approve / Reject" link
@@ -134,12 +128,6 @@ Feature: To verify Regression scenarios to test Application flow
       | Assembly Amount |
       | 1500000         |
     And user clicks on "Save" button
-#    When user navigates to "Aircraft" tab
-#    And user selects newly added "8429 (A340)" aircraft
-#    And user selects newly added "C-Check-2015-06-28-8429" aircraft maintenace event
-#    Then verify that newly added records is displayed
-#     | Invoice Date | Status | Last Modified Date |
-#     | 7/5/2015     | Open   | 7/5/2015           |
     And user clicks on "Submit for Approval" button
     And accept browser pop-up
     And user selects newly added "Approve / Reject" link
@@ -194,20 +182,6 @@ Feature: To verify Regression scenarios to test Application flow
       | 2013-02-002 | $49,500.00 | 2/10/2013  | $0.00       | $49,500.00 |
       | 2013-01-001 | $49,500.00 | 1/10/2013  | $0.00       | $49,500.00 |
 
-
-#  Scenario: Verify able to add Rent Payments for Lease
-#    When user navigates to "Leases" tab
-#    And user selects newly added "Orange Lease" lease
-#    And user clicks on "New Rent" button
-#    And user fill-in "Rent" information from regression
-#    And user clicks on "Save" button
-#    When user navigates to "Leases" tab
-#    And user selects newly added "Orange Lease" lease
-#    Then verify that newly added record is displayed under section "Rent Payments"
-#      | Name        | Amount Due | Date Due  | Amount Paid | Date Paid | Balance    |
-#      | 2015-04-028 | $49,500.00 | 4/10/2015 | $0.00       | 7/7/2015  | $49,500.00 |
-
-
   Scenario: Verify able to add Rent Invoice for Lease
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
@@ -218,12 +192,9 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
-    And user selects newly added "2015-04-028" rent
     Then verify that newly added record is displayed under section "Invoices"
-      | Invoice Name |
-      | 8429-A001-R  |
-#  Invoice Name	For Period Ending	Amount Due	Invoiced Amount	Amount Paid	Balance Due	Invoice Date	Invoice Type
-#  8429-A001-R	1/31/2013	$49,500.00	$49,500.00	$0.00	$49,500.00	5/1/2015	Rent
+      | Invoice Name | For Period Ending | Amount Due | Invoiced Amount | Amount Paid | Balance Due | Invoice Date | Invoice Type |
+      | 8429-A001-R  | 1/31/2013         | $49,500.00 | $49,500.00      | $0.00       | $49,500.00  | 5/1/2015     | Rent         |
 
   Scenario: Verify negative scenarios for Monthly Utilization
   o Two Monthly Utilizations for same month
@@ -234,7 +205,6 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user clicks on "New Monthly Utilization" button
-#    And user fill-in "Monthly_Utilization" information from regression
     And user fill-in aircraft "Technical details" section
       | For Month Ending | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 03/31/2013       | 100                        | 50                          |
@@ -243,7 +213,6 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user clicks on "New Monthly Utilization" button
-#    And user fill-in "Monthly_Utilization" information from regression
     And user fill-in aircraft "Technical details" section
       | For Month Ending | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 03/31/2018       | 100                        | 50                          |
@@ -252,7 +221,6 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user clicks on "New Monthly Utilization" button
-#    And user fill-in "Monthly_Utilization" information from regression
     And user fill-in aircraft "Technical details" section
       | For Month Ending | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 02/28/2013       | 100                        | 50                          |
@@ -261,7 +229,6 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user clicks on "New Monthly Utilization" button
-#    And user fill-in "Monthly_Utilization" information from regression
     And user fill-in aircraft "Technical details" section
       | For Month Ending | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 05/30/2013       | 100                        | 50                          |

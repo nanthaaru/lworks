@@ -249,8 +249,10 @@ Feature: To verify Regression scenarios to test Application flow
     And user fill-in aircraft "FH & FC" section
       | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 300                        | 50                          |
-#    todo: verify whether the value got updated
     And user clicks on "Save" button
+    Then verify that following values are populated in "Airframe Utilization" section
+      | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
+      | 300                        | 50                          |
     Then verify that Assembly Utilizations are auto created
       | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
       | Engine 1                  | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
@@ -290,8 +292,10 @@ Feature: To verify Regression scenarios to test Application flow
     And user fill-in aircraft "FH & FC" section
       | Running Hours During Month | Cycles During Month |
       | 200                        | 25                  |
-#    todo: verify whether the value got updated
     And user clicks on "Save" button
+    Then verify that following values are populated in "Assembly Utilization Detail" section
+      | Running Hours During Month | Cycles During Month |
+      | 200                        | 25                  |
 
     Then verify that following values are populated in "Reserve Calculations" section
       | Maintenance Reserve (Assembly) | Total MR (Assembly) |
@@ -396,9 +400,9 @@ Feature: To verify Regression scenarios to test Application flow
     And user navigates to "Aircraft" tab
     And user selects newly added "8429 (A340)" aircraft
     And user selects newly added "2013-03-003" monthly utilization
-#    Then verify that newly added records is displayed
-#      | Invoice Name |
-#      | 8429-A003-MR |
+    Then verify that newly added record is displayed under section "Invoices"
+      | Invoice Name |
+      | 8429-A001-R  |
     And user selects newly added "8429-A003-MR" Invoice
     And user clicks on "New Payment" button
     And user fill-in "Payment" information from regression
