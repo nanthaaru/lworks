@@ -7,7 +7,8 @@ book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
-  page.driver.browser.manage.window.maximize
+  # page.driver.browser.manage.window.maximize
+  Capybara.current_session.driver.browser.manage.window.resize_to(1280,1024)
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
