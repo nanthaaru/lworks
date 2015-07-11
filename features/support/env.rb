@@ -7,7 +7,7 @@ require "capybara/cucumber"
 require 'capybara-screenshot/cucumber'
 
 Capybara.default_driver = :selenium
-Capybara.default_wait_time = 120
+Capybara.default_wait_time = 30
 Capybara.app_host = "https://na14.salesforce.com"
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :firefox)

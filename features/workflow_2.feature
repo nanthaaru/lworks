@@ -277,6 +277,3 @@ Feature: To verify Regression scenarios to test Application flow
       | nanthalw@gmail.com |
     And user clicks on "Send PDF" button
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
-
-
-
