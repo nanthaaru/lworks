@@ -89,7 +89,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Save" button
     When user navigates to "Assemblies" tab
     And user selects newly added "111222333" Assembly
-    Then verify that following values are populated in "Operational Metrics" section
+    Then verify that following values are populated in "Operating Metrics" section
       | TSLV | CSLV |
       | 0.00 | 0    |
 
@@ -193,8 +193,9 @@ Feature: To verify Regression scenarios to test Application flow
     When user navigates to "Leases" tab
     And user selects newly added "Orange Lease" lease
     Then verify that newly added record is displayed under section "Invoices"
-      | Invoice Name | For Period Ending | Amount Due | Invoiced Amount | Amount Paid | Balance Due | Invoice Date | Invoice Type |
-      | 8429-A001-R  | 1/31/2013         | $49,500.00 | $49,500.00      | $0.00       | $49,500.00  | 5/1/2015     | Rent         |
+      | Invoice Name | For Period Ending | Amount Due    | Invoiced Amount | Amount Paid | Balance Due   | Invoice Date | Invoice Type |
+      | 8429-A003-MR | 3/31/2013         | $2,076,000.00 | $2,000,000.00   | $0.00       | $2,000,000.00 | 7/12/2015    | Aircraft MR  |
+      | 8429-A001-R  | 1/31/2013         | $49,500.00    | $49,500.00      | $0.00       | $49,500.00    | 5/1/2015     | Rent         |
 
   Scenario: Verify negative scenarios for Monthly Utilization
   o Two Monthly Utilizations for same month
@@ -248,7 +249,7 @@ Feature: To verify Regression scenarios to test Application flow
   @ignore
   Scenario: Verify that able to clear Invoice
     When user navigates to "Invoices" tab
-    And user selects newly added "8429-A003-R" lease
+    And user selects newly added "8429-A001-R" lease
     And user clicks on "Delete" button
     And accept browser pop-up
 

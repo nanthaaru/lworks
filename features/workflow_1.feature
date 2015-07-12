@@ -402,7 +402,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user selects newly added "2013-03-003" monthly utilization
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name |
-      | 8429-A003-R  |
+      | 8429-A003-MR  |
     And user selects newly added "8429-A003-MR" Invoice
     And user clicks on "New Payment" button
     And user fill-in "Payment" information from regression
