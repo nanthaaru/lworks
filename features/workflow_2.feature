@@ -246,7 +246,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user clicks on "Send PDF" button
     Then verify following message is displayed "Email with spec sheet sent to nanthalw@gmail.com"
 
-  @ignore
+  @clear_data
   Scenario: Verify that able to clear Invoice
     When user navigates to "Invoices" tab
     And user selects newly added "8429-A001-R" lease
