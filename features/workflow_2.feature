@@ -57,7 +57,7 @@ Feature: To verify Regression scenarios to test Application flow
     Then verify that newly added record is displayed under section "Aircraft Maintenance Event Invoices"
       | Invoice Date | Status |
       | 7/5/2015     | Paid   |
-    Then verify that following values are populated in "Operational Metrics" section
+    Then verify that following values are populated in "Assembly Maintenance Event Detail" section
       | Actual Claim Amount |
       | $3,000.00           |
 
@@ -194,7 +194,7 @@ Feature: To verify Regression scenarios to test Application flow
     And user selects newly added "Orange Lease" lease
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name | For Period Ending | Amount Due    | Invoiced Amount | Amount Paid | Balance Due   | Invoice Date | Invoice Type |
-      | 8429-A003-MR | 3/31/2013         | $2,076,000.00 | $2,000,000.00   | $0.00       | $2,000,000.00 | 7/12/2015    | Aircraft MR  |
+      | 8429-A003-MR | 3/31/2013         | $2,076,000.00 | $2,000,000.00   | $100,000.00 | $1,900,000.00 | 7/12/2015    | Aircraft MR  |
       | 8429-A001-R  | 1/31/2013         | $49,500.00    | $49,500.00      | $0.00       | $49,500.00    | 5/1/2015     | Rent         |
 
   Scenario: Verify negative scenarios for Monthly Utilization
