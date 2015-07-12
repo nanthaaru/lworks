@@ -224,3 +224,8 @@ Then(/^verify that newly added record is displayed in the page$/) do |table|
     end
   end
 end
+
+
+And(/^user clicks on "([^"]*)" link$/) do |link_text|
+  click_link(link_text, :exact => true, :match => :first)
+end
