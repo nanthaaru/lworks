@@ -229,3 +229,8 @@ end
 And(/^user clicks on "([^"]*)" link$/) do |link_text|
   click_link(link_text, :exact => true, :match => :first)
 end
+
+And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
+  label_element = page.find('label', :text => label, :exact => true, :match => :first)
+  form_fill(label,value,label_element[:for])
+end

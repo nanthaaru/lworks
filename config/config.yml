@@ -1,1 +1,5 @@
 base_url="https://na14.salesforce.com"
+login_user=
+login_password=
+excel_workbook=
+excel_worksheet=
