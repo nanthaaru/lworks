@@ -13,17 +13,6 @@ Given(/^user logins and navigates to home page$/) do
   page.click_link 'Home'
 end
 
-def get_id_from_label(table)
-  table.hashes.each do |row|
-    row.each do |key, value|
-      p key
-      label = page.find("label", :text => key)
-      p label[:for]
-      p label[:id]
-    end
-  end
-end
-
 def form_fill(field_name, value, element_id)
   element = page.find_by_id(element_id)
   if field_name != 'Owner'
