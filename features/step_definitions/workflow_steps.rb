@@ -1,6 +1,4 @@
 require 'spreadsheet'
-require 'pry'
-require 'gmail'
 
 Spreadsheet.client_encoding = 'UTF-8'
 book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
@@ -27,52 +25,27 @@ def get_id_from_label(table)
 end
 
 def form_fill(field_name, value, element_id)
-  # document.getElementById("00Nd00000075Q7c").parentNode.className
-  # document.getElementById("00Nd0000007eY4A").parentNode.className
   element = page.find_by_id(element_id)
   if field_name != 'Owner'
     if element.tag_name == 'select'
-      # p page.find_by_id(element_id).class
-      # option = first(element_id).text
-      # select option, :from => element_id
-
-      # element.select value, :from => element_id
       element.select value
     else
       if element.tag_name == 'input'
         if element[:type] == 'text'
           if element.class == 'dateInput'
-            # element.fill_in element_id, :with => value
             element.set value
           else
-            # element.fill_in element_id, :with => value
             element.set value
           end
         else
           if element[:type] == 'checkbox'
             element.click
-            # p page.find_by_id(element_id).class
-            # page.fill_in element_id, :with => value
           end
         end
       end
       if element.tag_name == 'textarea'
-        # element.fill_in element_id, :with => value
         element.set value
       end
-    end
-  end
-end
-
-When(/^user fill\-in "([^"]*)" information from datasheet/) do |screen|
-  work_sheet = book.worksheet screen
-  work_sheet.drop(1).each do |row|
-    field_name = row[3]
-    field_value = row[4]
-    # p field_name
-    # p field_value
-    if field_value != nil
-      # form_fill(field_name, field_value)
     end
   end
 end
@@ -84,7 +57,6 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     label_text = label.text.sub('* ', '')
     element[label_text] = label[:for]
   end
-
   work_sheet = book.worksheet 'Regression'
   colindex = work_sheet.row(0).index(screen)
   work_sheet.drop(1).each do |row|
