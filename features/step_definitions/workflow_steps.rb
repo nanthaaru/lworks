@@ -64,14 +64,6 @@ def form_fill(field_name, value, element_id)
   end
 end
 
-def get_label_from_page
-  visit "/"
-  lables = page.all("label", :text => "")
-  lables.each do |label|
-    p label.text
-  end
-end
-
 When(/^user fill\-in "([^"]*)" information from datasheet/) do |screen|
   work_sheet = book.worksheet screen
   work_sheet.drop(1).each do |row|
@@ -108,7 +100,6 @@ end
 And(/^user clicks on "([^"]*)" button$/) do |btn_name|
   click_button(btn_name, :match => :first)
   sleep 2
-#   get_label_from_page
 end
 
 Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do |section_title, table|
