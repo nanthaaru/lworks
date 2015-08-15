@@ -194,7 +194,7 @@ Feature: To verify Regression scenarios to test Workflow - 2
     And user selects newly added "Orange Lease" lease
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name | For Period Ending | Amount Due    | Invoiced Amount | Amount Paid | Balance Due   | Invoice Date | Invoice Type |
-      | 8429-A003-MR | 3/31/2013         | $2,076,000.00 | $2,000,000.00   | $100,000.00 | $1,900,000.00 | 7/12/2015    | Aircraft MR  |
+      | 8429-A003-MR | 3/31/2013         | $2,076,000.00 | $2,000,000.00   | $100,000.00 | $1,900,000.00 | TODAYS_DATE | Aircraft MR  |
       | 8429-A001-R  | 1/31/2013         | $49,500.00    | $49,500.00      | $0.00       | $49,500.00    | 5/1/2015     | Rent         |
 
   Scenario: Verify negative scenarios for Monthly Utilization

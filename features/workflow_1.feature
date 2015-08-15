@@ -402,7 +402,7 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user selects newly added "2013-03-003" monthly utilization
     Then verify that newly added record is displayed under section "Invoices"
       | Invoice Name |
-      | 8429-A003-MR  |
+      | 8429-A003-MR |
     And user selects newly added "8429-A003-MR" Invoice
     And user clicks on "New Payment" button
     And user fill-in "Payment" information from regression
@@ -421,6 +421,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user selects newly added "2013-03-003" monthly utilization
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added record is displayed under section "Payments"
-      | Payment Name        | Amount      |
-      | Aircraft MR-2015-07 | $100,000.00 |
+      | Payment Name                   | Amount      |
+      | Aircraft MR-2015-TODAYS_MONTH | $100,000.00 |
 

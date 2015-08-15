@@ -6,7 +6,7 @@ book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
 Given(/^user logins and navigates to home page$/) do
   visit '/'
   # page.driver.browser.manage.window.maximize
-  Capybara.current_session.driver.browser.manage.window.resize_to(1280,1024)
+  Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
   page.fill_in 'username', :with => 'nantha.qa@lw.com'
   page.fill_in 'password', :with => 'lworks123'
   page.click_button 'Login'
@@ -64,6 +64,15 @@ And(/^user clicks on "([^"]*)" button$/) do |btn_name|
 end
 
 Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do |section_title, table|
+  table.map_column!('Invoice Date') do |date|
+    if date == 'TODAYS_DATE'
+      date = Time.now.strftime("%m-%d-%y")
+    end
+    if date == 'TODAYS_MONTH'
+      date = Time.now.strftime("%mm")
+    end
+    date
+  end
   section = page.find('h3', :text => section_title, :exact => true, :match => :first)
   section_id = section[:id]
   section_id = section_id.sub('title', 'body')
@@ -108,11 +117,11 @@ And(/^user fill\-in aircraft "([^"]*)" section$/) do |arg, table|
 end
 
 Then(/^verify that Aircraft status is changed to assigned$/) do |table|
-  step "verify that newly added record is displayed in the page", table
+  step 'verify that newly added record is displayed in the page', table
 end
 
 Then(/^verify that Assembly Utilizations are auto created$/) do |table|
-  step "verify that newly added record is displayed in the page", table
+  step 'verify that newly added record is displayed in the page', table
 end
 
 Then(/^verify that following values are populated in "([^"]*)" section$/) do |section_name, table|
@@ -131,7 +140,7 @@ end
 
 And(/^user selects assembly utilization "([^"]*)"$/) do |item_type|
   element = page.find('td.dataCell', :text => item_type, :match => :first)
-  page.click_link element.find(:xpath, "../th").text
+  page.click_link element.find(:xpath, '../th').text
 end
 
 Then(/^verify following error message is displayed "([^"]*)"$/) do |error_msg|
@@ -151,7 +160,6 @@ Then(/^verify following message is displayed "([^"]*)"$/) do |msg|
   page.find('.messageText').text.should include(msg)
 end
 
-
 Then(/^verify that newly added record is displayed in the page$/) do |table|
   sleep 2
   header = page.all('table.list tr.headerRow th').map(&:text)
@@ -164,12 +172,11 @@ Then(/^verify that newly added record is displayed in the page$/) do |table|
   end
 end
 
-
 And(/^user clicks on "([^"]*)" link$/) do |link_text|
   click_link(link_text, :exact => true, :match => :first)
 end
 
 And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
   label_element = page.find('label', :text => label, :exact => true, :match => :first)
-  form_fill(label,value,label_element[:for])
+  form_fill(label, value, label_element[:for])
 end
