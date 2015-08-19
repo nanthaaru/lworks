@@ -64,22 +64,22 @@ And(/^user clicks on "([^"]*)" button$/) do |btn_name|
 end
 
 Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do |section_title, table|
-  if table.map_column!('Payment Name')
-    table.map_column!('Payment Name') do |date|
-      if date.include? 'TODAYS_MONTH'
-        date = date['TODAYS_MONTH'] = Time.now.strftime("%m")
-      end
-      date
-    end
-  end
-  if table.map_column!('Invoice Date')
-    table.map_column!('Invoice Date') do |date|
-      if date.include? 'TODAYS_DATE'
-        date = date['TODAYS_DATE'] = Time.now.strftime("%m-%d-%y")
-      end
-      date
-    end
-  end
+  # if table.map_column!('Payment Name')
+  #   table.map_column!('Payment Name') do |date|
+  #     if date.include? 'TODAYS_MONTH'
+  #       date = date['TODAYS_MONTH'] = Time.now.strftime("%m")
+  #     end
+  #     date
+  #   end
+  # end
+  # if table.map_column!('Invoice Date')
+  #   table.map_column!('Invoice Date') do |date|
+  #     if date.include? 'TODAYS_DATE'
+  #       date = date['TODAYS_DATE'] = Time.now.strftime("%m-%d-%y")
+  #     end
+  #     date
+  #   end
+  # end
   section = page.find('h3', :text => section_title, :exact => true, :match => :first)
   section_id = section[:id]
   section_id = section_id.sub('title', 'body')
@@ -132,7 +132,9 @@ Then(/^verify that Assembly Utilizations are auto created$/) do |table|
 end
 
 Then(/^verify that following values are populated in "([^"]*)" section$/) do |section_name, table|
-  section = page.find('.pbSubheader', text: section_name)
+  if (section = page.find('.pbSubheader', text: section_name))
+  else (section = page.find('.pbHeader', text: section_name))
+  end
   td_list = page.find(:xpath, "//div[preceding-sibling::div[@id='"+ section[:id]+ "']]", :match => :first).all('td')
   fields = Hash.new
   (0...td_list.length).step(2) do |i|
