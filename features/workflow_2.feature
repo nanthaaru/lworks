@@ -57,7 +57,7 @@ Feature: To verify Regression scenarios to test Workflow - 2
     Then verify that newly added record is displayed under section "Aircraft Maintenance Event Invoices"
       | Invoice Date | Status |
       | 7/5/2015     | Paid   |
-    Then verify that following values are populated in "Assembly Maintenance Event Detail" section
+    Then verify that following values are populated in "Assembly Maintenance Event Detail" header section
       | Actual Claim Amount |
       | $3,000.00           |
 

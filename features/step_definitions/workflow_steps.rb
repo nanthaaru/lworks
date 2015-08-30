@@ -189,3 +189,17 @@ And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
   label_element = page.find('label', :text => label, :exact => true, :match => :first)
   form_fill(label, value, label_element[:for])
 end
+
+Then(/^verify that following values are populated in "([^"]*)" header section$/) do |arg, table|
+  section = page.find('.pbHeader', text: section_name)
+  td_list = page.find(:xpath, "//div[preceding-sibling::div[@id='"+ section[:id]+ "']]", :match => :first).all('td')
+  fields = Hash.new
+  (0...td_list.length).step(2) do |i|
+    fields[td_list[i].text] = td_list[i+1].text
+  end
+  table.hashes.each do |row|
+    row.each do |key, value|
+      fields[key].should include(value)
+    end
+  end
+end
