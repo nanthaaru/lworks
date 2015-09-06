@@ -7,9 +7,13 @@ require 'capybara-screenshot/cucumber'
 require 'yaml'
 
 config = YAML.load_file('config/config.yml')
+LOGIN_USER = config['login_user']
+LOGIN_PASSWORD = config['login_password']
+EXCEL_WORKBOOK = config['excel_workbook']
+EXCEL_WORKSHEET = config['excel_worksheet']
 Capybara.default_driver = :selenium
 Capybara.default_wait_time = 30
-Capybara.app_host = 'https://na14.salesforce.com'
+Capybara.app_host = config['base_url']
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :firefox)
 end

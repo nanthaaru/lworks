@@ -1,14 +1,16 @@
 require 'spreadsheet'
 
 Spreadsheet.client_encoding = 'UTF-8'
-book = Spreadsheet.open File.expand_path('../../support/data.xls', __FILE__)
+book = Spreadsheet.open File.expand_path(EXCEL_WORKBOOK, __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
   # page.driver.browser.manage.window.maximize
   Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
-  page.fill_in 'username', :with => 'nantha.qa@lw.com'
-  page.fill_in 'password', :with => 'lworks123'
+  puts LOGIN_USER
+  puts LOGIN_PASSWORD
+  page.fill_in 'username', :with => LOGIN_USER
+  page.fill_in 'password', :with => LOGIN_PASSWORD
   page.click_button 'Login'
   page.click_link 'Home'
 end
@@ -46,7 +48,7 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     label_text = label.text.sub('* ', '')
     element[label_text] = label[:for]
   end
-  work_sheet = book.worksheet 'Regression'
+  work_sheet = book.worksheet EXCEL_WORKSHEET
   colindex = work_sheet.row(0).index(screen)
   work_sheet.drop(1).each do |row|
     field_name = row[colindex]
@@ -173,7 +175,7 @@ And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
 end
 
 Then(/^verify that following values are populated in "([^"]*)" header section$/) do |section_header_name, table|
-  section = page.find('.pbHeader', text: section_header_name)
+  section = page.find('.pbSubheader', text: '')
   td_list = page.find(:xpath, "//div[preceding-sibling::div[@id='"+ section[:id]+ "']]", :match => :first).all('td')
   fields = Hash.new
   (0...td_list.length).step(2) do |i|
