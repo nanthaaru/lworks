@@ -76,6 +76,16 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
   table.hashes.zip(datarow).each do |row, data|
     row.each do |key, value|
       header.should include(key)
+      if value.include? 'MONTH_YEAR'
+        date = Time.now.strftime('%m-%y')
+        value.slice! 'MONTH_YEAR'
+        value = value + date
+      end
+      if value.include? 'TODAYS_DATE'
+        date = Time.now.strftime('%-d/%-m/%y')
+        value.slice! 'TODAYS_DATE'
+        value = value + date
+      end
       data.text.should include(value)
     end
   end
@@ -175,8 +185,7 @@ And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
 end
 
 Then(/^verify that following values are populated in "([^"]*)" header section$/) do |section_header_name, table|
-  section = page.find('.pbSubheader', text: '')
-  td_list = page.find(:xpath, "//div[preceding-sibling::div[@id='"+ section[:id]+ "']]", :match => :first).all('td')
+  td_list = page.find('.pbSubsection', :match => :first).all('td')
   fields = Hash.new
   (0...td_list.length).step(2) do |i|
     fields[td_list[i].text] = td_list[i+1].text
