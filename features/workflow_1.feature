@@ -422,5 +422,5 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added record is displayed under section "Payments"
       | Payment Name                   | Amount      |
-      | Aircraft MR-2015-TODAYS_MONTH  | $100,000.00 |
+      | Aircraft MR-2015-MONTH_YEAR  | $100,000.00 |
 
