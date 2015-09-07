@@ -260,10 +260,10 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
+      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
 
     Then verify that following values are populated in "Base Maintenance Reserve Rates" section
       | Base MRR Engine 1 | Base MRR Engine 2 | Base MRR APU | Base MRR Other | Base MRR Airframe Heavy Maintenance 1 | Base MRR Airframe Heavy Maintenance 2 | Base MRR C Check | LLP MR Escalation (Lease) | General MR Escalation (Lease) | LLP Escalation Factor | General Escalation Factor |
