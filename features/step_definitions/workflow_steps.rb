@@ -78,13 +78,13 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
       header.should include(key)
       if value.include? 'YEAR_MONTH'
         date = Time.now
-        date = date.localtime("+5:30").strftime('%y-%m')
+        date = date.localtime("+05:30").strftime('%y-%m')
         value.slice! 'YEAR_MONTH'
         value = value + date
       end
       if value.include? 'TODAYS_DATE'
         date = Time.now
-        date = date.localtime("+5:30").strftime('%-m/%-d/%Y')
+        date = date.localtime("+05:30").strftime('%-m/%-d/%Y')
         value.slice! 'TODAYS_DATE'
         value = value + date
       end
