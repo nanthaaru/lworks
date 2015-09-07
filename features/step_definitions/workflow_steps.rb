@@ -77,12 +77,14 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
     row.each do |key, value|
       header.should include(key)
       if value.include? 'YEAR_MONTH'
-        date = Time.localtime("+5:30").strftime('%y-%m')
+        date = Time.now
+        date = date.localtime("+5:30").strftime('%y-%m')
         value.slice! 'YEAR_MONTH'
         value = value + date
       end
       if value.include? 'TODAYS_DATE'
-        date = Time.localtime("+5:30").strftime('%-m/%-d/%Y')
+        date = Time.now
+        date = date.localtime("+5:30").strftime('%-m/%-d/%Y')
         value.slice! 'TODAYS_DATE'
         value = value + date
       end
