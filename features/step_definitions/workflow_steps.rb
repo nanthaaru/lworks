@@ -76,13 +76,13 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
   table.hashes.zip(datarow).each do |row, data|
     row.each do |key, value|
       header.should include(key)
-      if value.include? 'MONTH_YEAR'
-        date = Time.now.strftime('%m-%y')
-        value.slice! 'MONTH_YEAR'
+      if value.include? 'YEAR_MONTH'
+        date = Time.localtime("+5:30").strftime('%y-%m')
+        value.slice! 'YEAR_MONTH'
         value = value + date
       end
       if value.include? 'TODAYS_DATE'
-        date = Time.now.strftime('%-d/%-m/%y')
+        date = Time.localtime("+5:30").strftime('%-m/%-d/%Y')
         value.slice! 'TODAYS_DATE'
         value = value + date
       end
