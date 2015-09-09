@@ -296,10 +296,6 @@ Feature: To verify Regression scenarios to test Workflow - 2
     And user clicks on "Delete" button
     And accept browser pop-up
 
-    And user selects newly added "511090888" assembly
-    And user clicks on "Delete" button
-    And accept browser pop-up
-
     And user selects newly added "432675588" assembly
     And user clicks on "Delete" button
     And accept browser pop-up
