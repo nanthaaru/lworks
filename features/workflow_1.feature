@@ -73,18 +73,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | Constituent Assembly Name |
       | 250033322                 |
 
-  Scenario: Verify able to add new Landing Gear Center Assembly
-    When user navigates to "Assemblies" tab
-    And user clicks on "New" button
-    And user select "Landing Gear" for "Record Type of new record"
-    And user clicks on "Continue" button
-    And user fill-in "LandingGear_Center" information from regression
-    And user clicks on "Save" button
-    And user navigates to "Assemblies" tab
-    Then verify that newly added record is displayed in the page
-      | Constituent Assembly Name |
-      | 511090888                 |
-
   Scenario: Verify able to add new Landing Gear Nose Assembly
     When user navigates to "Assemblies" tab
     And user clicks on "New" button
@@ -224,7 +212,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
@@ -260,7 +247,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | APU                       | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 300.00                     | 50                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
-      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 300.00                     | 50                  |
@@ -341,7 +327,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | APU                       | 5,000.00 | 3,000.00 | 400.00                     | 75                  |
       | Landing Gear - Left Main  | 2,200.00 | 1,600.00 | 400.00                     | 75                  |
       | Landing Gear - Right Main | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
-      | Landing Gear - Center     | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Nose       | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Left Wing  | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
       | Landing Gear - Right Wing | 5,000.00 | 2,500.00 | 400.00                     | 75                  |
