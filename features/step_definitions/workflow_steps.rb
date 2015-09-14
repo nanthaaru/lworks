@@ -6,8 +6,7 @@ book = Spreadsheet.open File.expand_path(EXCEL_WORKBOOK, __FILE__)
 Given(/^user logins and navigates to home page$/) do
   visit '/'
   # page.driver.browser.manage.window.maximize
-  Capybara.current_session.driver.browser.manage.window.maximize
-    # Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
+  Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
   puts LOGIN_USER
   puts LOGIN_PASSWORD
   page.fill_in 'username', :with => LOGIN_USER
