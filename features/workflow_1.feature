@@ -205,6 +205,7 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user clicks on "New Monthly Utilization" button
     And user fill-in "Monthly_Utilization" information from regression
     And user clicks on "Save" button
+    And user clicks on "Show 3 more »" link
     Then verify that Assembly Utilizations are auto created
       | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
       | Engine 1                  | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
@@ -240,6 +241,7 @@ Feature: To verify Regression scenarios to test Workflow - 1
     Then verify that following values are populated in "Airframe Utilization" section
       | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 300                        | 50                          |
+    And user clicks on "Show 3 more »" link
     Then verify that Assembly Utilizations are auto created
       | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
       | Engine 1                  | 5,000.00 | 3,000.00 | 300.00                     | 50                  |
@@ -321,6 +323,7 @@ Feature: To verify Regression scenarios to test Workflow - 1
       | Airframe Flight Hours (FH) | Airframe Flight Cycles (FC) |
       | 400                        | 75                          |
     And user clicks on "Save" button
+    And user clicks on "Show 3 more »" link
     Then verify that Assembly Utilizations are auto created
       | Report Item Type          | TSN      | CSN      | Running Hours During Month | Cycles During Month |
       | Engine 2                  | 4,800.00 | 3,200.00 | 400.00                     | 75                  |

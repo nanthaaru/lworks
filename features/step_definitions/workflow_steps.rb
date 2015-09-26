@@ -1,14 +1,14 @@
 require 'spreadsheet'
+require 'pry-debugger'
 
 Spreadsheet.client_encoding = 'UTF-8'
 book = Spreadsheet.open File.expand_path(EXCEL_WORKBOOK, __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
-  # page.driver.browser.manage.window.maximize
-  Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
-  puts LOGIN_USER
-  puts LOGIN_PASSWORD
+  # page.driver.browser.managee.window.maximize
+  Capybara.current_session.driver.browser.manage.window.maximize
+  # Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
   page.fill_in 'username', :with => LOGIN_USER
   page.fill_in 'password', :with => LOGIN_PASSWORD
   page.click_button 'Login'
@@ -16,7 +16,9 @@ Given(/^user logins and navigates to home page$/) do
 end
 
 def form_fill(field_name, value, element_id)
+  Capybara.ignore_hidden_elements = false
   element = page.find_by_id(element_id)
+  # binding.pry
   if field_name != 'Owner'
     if element.tag_name == 'select'
       element.select value
@@ -25,6 +27,13 @@ def form_fill(field_name, value, element_id)
         if element[:type] == 'text'
           if element.class == 'dateInput'
             element.set value
+          elsif element[:class] == 'readonly'
+            page.find("img[alt='Lease Lookup (New Window)']").click
+            sleep 10
+            page.driver.switch_to_window(page.driver.window_handles.last)
+            page.driver.browser.switch_to.frame('resultsFrame')
+            click_on value
+            page.driver.switch_to_window(page.driver.window_handles.first)
           else
             element.set value
           end
@@ -39,6 +48,7 @@ def form_fill(field_name, value, element_id)
       end
     end
   end
+  Capybara.ignore_hidden_elements = true
 end
 
 When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
@@ -54,7 +64,9 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     field_name = row[colindex]
     field_value = row[colindex+1]
     break if field_name == nil
-    if field_value != nil && field_name != nil
+    puts field_name
+    puts field_value
+    if (field_value != nil && field_name != nil) && (field_value != "" && field_name != "")
       form_fill(field_name, field_value, element[field_name])
     end
   end
@@ -94,6 +106,9 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
 end
 
 When(/^user navigates to "([^"]*)" tab$/) do |tab_name|
+  if has_no_link?(tab_name, :match => :first)
+    page.find_by_id('MoreTabs_Tab').click
+  end
   click_link(tab_name, :match => :first)
 end
 
@@ -178,7 +193,9 @@ Then(/^verify that newly added record is displayed in the page$/) do |table|
 end
 
 And(/^user clicks on "([^"]*)" link$/) do |link_text|
-  click_link(link_text, :exact => true, :match => :first)
+  if has_link?(link_text, :match => :first)
+    click_link(link_text, :exact => true, :match => :first)
+  end
 end
 
 And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
