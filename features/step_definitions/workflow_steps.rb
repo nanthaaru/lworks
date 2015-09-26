@@ -1,5 +1,4 @@
 require 'spreadsheet'
-require 'pry-debugger'
 
 Spreadsheet.client_encoding = 'UTF-8'
 book = Spreadsheet.open File.expand_path(EXCEL_WORKBOOK, __FILE__)
