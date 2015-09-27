@@ -10,8 +10,8 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user clicks on "Save" button
     And user navigates to "Aircraft" tab
     Then verify that newly added record is displayed in the page
-      | Aircraft Name | MSN  | Aircraft Type | Status    |
-      | 8429 (A340)   | 8429 | A340          | Available |
+      | Aircraft Name | Variant | Registration NUmber | Location | Lease | Aircraft Type | Status    |
+      | 8429 (A340)   | 200     | NA-4582UA           |          |       | A340          | Available |
 
   Scenario: Verify able to add new Engine-1 Assembly
     When user navigates to "Assemblies" tab
@@ -409,6 +409,6 @@ Feature: To verify Regression scenarios to test Workflow - 1
     And user selects newly added "2013-03-003" monthly utilization
     And user selects newly added "8429-A003-MR" Invoice
     Then verify that newly added record is displayed under section "Payments"
-      | Payment Name                   | Amount      |
-      | Aircraft MR-YEAR_MONTH         | $100,000.00 |
+      | Payment Name           | Amount      |
+      | Aircraft MR-YEAR_MONTH | $100,000.00 |
 

@@ -63,10 +63,10 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     field_name = row[colindex]
     field_value = row[colindex+1]
     break if field_name == nil
-    puts field_name
-    puts field_value
-    if (field_value != nil && field_name != nil) && (field_value != "" && field_name != "")
+    if field_value != nil && field_name != nil && element[field_name] != nil
       form_fill(field_name, field_value, element[field_name])
+    elsif element[field_name] == nil
+      "Element : " + field_name + " not in application"
     end
   end
 end
