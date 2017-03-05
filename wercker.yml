@@ -27,4 +27,4 @@ build:
 artifacts:
     paths:
     - out/reports.html
-    cp ./out $WERCKER_REPORT_ARTIFACTS_DIR
+    - cp ./out $WERCKER_REPORT_ARTIFACTS_DIR
