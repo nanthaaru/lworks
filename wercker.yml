@@ -23,8 +23,8 @@ build:
     steps:
         - bundle-install
         - script:
-            code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature --format progress
+            code: bundle exec cucumber --format html --out out/reports.html features/workflow_1.feature --format progress
 artifacts:
     paths:
     - out/reports.html
-    - cp out/reports.html $WERCKER_REPORT_ARTIFACTS_DIR
+    - cp out/ $WERCKER_REPORT_ARTIFACTS_DIR
