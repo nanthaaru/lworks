@@ -24,4 +24,4 @@ build:
         - bundle-install
         - script:
             name: rspec
-            code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature features/workflow_2.feature --format progress
+            code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature --format progress
