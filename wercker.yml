@@ -23,5 +23,4 @@ build:
     steps:
         - bundle-install
         - script:
-            name: rspec
             code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature --format progress
