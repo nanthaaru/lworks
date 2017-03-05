@@ -1,0 +1,5 @@
+base_url: https://na14.salesforce.com
+login_user: nantha.qa@lw.com
+login_password: lworks123
+excel_workbook: ../../support/data.xls
+excel_worksheet: Regression
