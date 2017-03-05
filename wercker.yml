@@ -24,3 +24,6 @@ build:
         - bundle-install
         - script:
             code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature --format progress
+artifacts:
+    paths:
+    - out/reports.html
