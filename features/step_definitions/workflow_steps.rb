@@ -1,52 +1,44 @@
 require 'spreadsheet'
+require 'pry'
 
 Spreadsheet.client_encoding = 'UTF-8'
 book = Spreadsheet.open File.expand_path(EXCEL_WORKBOOK, __FILE__)
 
 Given(/^user logins and navigates to home page$/) do
   visit '/'
-  # page.driver.browser.managee.window.maximize
+  # page.driver.browser.manage.window.maximize
   Capybara.current_session.driver.browser.manage.window.maximize
   # Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
-  page.fill_in 'username', :with => LOGIN_USER
-  page.fill_in 'password', :with => LOGIN_PASSWORD
-  page.click_button 'Login'
-  page.click_link 'Home'
+    page.fill_in 'username', :with => LOGIN_USER
+    page.fill_in 'password', :with => LOGIN_PASSWORD
+    page.click_button 'Login'
+    page.click_link 'Home'
 end
 
-def form_fill(field_name, value, element_id)
+def lookup_select_value(value)
+  page.find("img[alt='Lease Lookup (New Window)']").click
+  sleep 10
+  page.driver.switch_to_window(page.driver.window_handles.last)
+  page.driver.browser.switch_to.frame('resultsFrame')
+  click_on value
+  page.driver.switch_to_window(page.driver.window_handles.first)
+end
+
+def form_fill(value, element_id)
   Capybara.ignore_hidden_elements = false
   element = page.find_by_id(element_id)
   # binding.pry
-  if field_name != 'Owner'
     if element.tag_name == 'select'
       element.select value
-    else
-      if element.tag_name == 'input'
-        if element[:type] == 'text'
-          if element.class == 'dateInput'
-            element.set value
-          elsif element[:class] == 'readonly'
-            page.find("img[alt='Lease Lookup (New Window)']").click
-            sleep 10
-            page.driver.switch_to_window(page.driver.window_handles.last)
-            page.driver.browser.switch_to.frame('resultsFrame')
-            click_on value
-            page.driver.switch_to_window(page.driver.window_handles.first)
-          else
-            element.set value
-          end
-        else
-          if element[:type] == 'checkbox'
-            element.click
-          end
-        end
-      end
-      if element.tag_name == 'textarea'
-        element.set value
-      end
+    elsif element.tag_name == 'input' && element.class == 'dateInput' && element[:type] == 'text'
+      element.set value
+    elsif element.tag_name == 'input' && element[:class] == 'readonly' && element[:type] == 'text'
+      lookup_select_value(value)
+    elsif element[:type] == 'checkbox'
+      element.click
+    elsif element.tag_name == 'textarea' || element.tag_name == 'input'
+      element.set value
     end
-  end
   Capybara.ignore_hidden_elements = true
 end
 
@@ -64,7 +56,8 @@ When(/^user fill\-in "([^"]*)" information from regression/) do |screen|
     field_value = row[colindex+1]
     break if field_name == nil
     if field_value != nil && field_name != nil && element[field_name] != nil
-      form_fill(field_name, field_value, element[field_name])
+      # binding.pry
+      form_fill(field_value, element[field_name])
     elsif element[field_name] == nil
       "Element : " + field_name + " not in application"
     end
@@ -76,8 +69,23 @@ And(/^user clicks on "([^"]*)" button$/) do |btn_name|
   sleep 2
 end
 
+def get_date(value)
+  date = Time.now
+  if value.include? 'YEAR_MONTH'
+    date = date.localtime("+05:30").strftime('%Y-%m')
+    value.slice! 'YEAR_MONTH'
+    value = value + date
+  elsif value.include? 'TODAYS_DATE'
+    date = Time.now
+    date = date.localtime("+05:30").strftime('%-m/%-d/%Y')
+    value.slice! 'TODAYS_DATE'
+    value = value + date
+  end
+  value
+end
+
 Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do |section_title, table|
-  section = page.find('h3', :text => section_title, :exact => true, :match => :first)
+  section = page.find('h3', :text => section_title, :match => :first)
   section_id = section[:id]
   section_id = section_id.sub('title', 'body')
   section_table = page.find_by_id(section_id)
@@ -86,29 +94,21 @@ Then(/^verify that newly added record is displayed under section "([^"]*)"$/) do
   # datarow = page.all('table.list tr.dataRow')
   table.hashes.zip(datarow).each do |row, data|
     row.each do |key, value|
-      header.should include(key)
-      if value.include? 'YEAR_MONTH'
-        date = Time.now
-        date = date.localtime("+05:30").strftime('%Y-%m')
-        value.slice! 'YEAR_MONTH'
-        value = value + date
-      end
-      if value.include? 'TODAYS_DATE'
-        date = Time.now
-        date = date.localtime("+05:30").strftime('%-m/%-d/%Y')
-        value.slice! 'TODAYS_DATE'
-        value = value + date
-      end
-      data.text.should include(value)
+      expect(header).to include(key)
+      value = get_date(value)
+      expect(data.text).to include(value)
     end
   end
+  # binding.pry
 end
 
 When(/^user navigates to "([^"]*)" tab$/) do |tab_name|
-  if has_no_link?(tab_name, :match => :first)
+  if has_link?(tab_name, :match => :first)
+    click_link(tab_name, :match => :first)
+  else
     page.find_by_id('MoreTabs_Tab').click
+    click_link(tab_name, :match => :first)
   end
-  click_link(tab_name, :match => :first)
 end
 
 And(/^accept browser pop\-up$/) do
@@ -121,16 +121,16 @@ end
 
 Then(/^Verify that aircraft "([^"]*)" is deleted$/) do |aircraft_name|
   datarow = page.all('table.list tr.first .dataCell').map(&:text)
-  datarow.should_not include(aircraft_name)
+  expect(datarow).not_to include(aircraft_name)
 end
 
 And(/^user fill\-in aircraft "([^"]*)" section$/) do |arg, table|
   # table is a table.hashes.keys # => [:Line #, :Number Of Landing Gears]
   table.hashes.each do |row|
     row.each do |key, value|
-      label = page.find('label', :text => key, :exact => true, :match => :first)
+      label = page.find('label', :text => key, :match => :first)
       element_id = label[:for]
-      form_fill(key, value, element_id)
+      form_fill(value, element_id)
     end
   end
 end
@@ -152,7 +152,7 @@ Then(/^verify that following values are populated in "([^"]*)" section$/) do |se
   end
   table.hashes.each do |row|
     row.each do |key, value|
-      fields[key].should include(value)
+      expect(fields[key]).to include(value)
     end
   end
 end
@@ -163,20 +163,20 @@ And(/^user selects assembly utilization "([^"]*)"$/) do |item_type|
 end
 
 Then(/^verify following error message is displayed "([^"]*)"$/) do |error_msg|
-  page.find('.pbError').text.should include(error_msg)
+  expect(page.find('.pbError').text).to include(error_msg)
 end
 
 And(/^verify the pop\-up text "([^"]*)"$/) do |msg_text|
   actual = page.driver.browser.switch_to.alert.text
-  actual.should include(msg_text)
+  expect(actual).to include(msg_text)
 end
 
 Then(/^verify following field level error message is displayed "([^"]*)"$/) do |error_msg|
-  page.find('.errorMsg').text.should include(error_msg)
+  expect(page.find('.errorMsg').text).to include(error_msg)
 end
 
 Then(/^verify following message is displayed "([^"]*)"$/) do |msg|
-  page.find('.messageText').text.should include(msg)
+  expect(page.find('.messageText').text).to include(msg)
 end
 
 Then(/^verify that newly added record is displayed in the page$/) do |table|
@@ -185,8 +185,10 @@ Then(/^verify that newly added record is displayed in the page$/) do |table|
   datarow = page.all('table.list tr.dataRow')
   table.hashes.zip(datarow).each do |row, data|
     row.each do |key, value|
-      header.should include(key)
-      data.text.should include(value)
+    # header.should include(key)
+      expect(header).to include(key)
+    # data.text.should include(value)
+      expect(data.text).to include(value)
     end
   end
 end
@@ -198,8 +200,8 @@ And(/^user clicks on "([^"]*)" link$/) do |link_text|
 end
 
 And(/^user select "([^"]*)" for "([^"]*)"$/) do |value, label|
-  label_element = page.find('label', :text => label, :exact => true, :match => :first)
-  form_fill(label, value, label_element[:for])
+  label_element = page.find('label', :text => label, :match => :first)
+  form_fill(value, label_element[:for])
 end
 
 Then(/^verify that following values are populated in "([^"]*)" header section$/) do |section_header_name, table|
@@ -210,7 +212,7 @@ Then(/^verify that following values are populated in "([^"]*)" header section$/)
   end
   table.hashes.each do |row|
     row.each do |key, value|
-      fields[key].should include(value)
+      expect(fields[key]).to include(value)
     end
   end
 end
