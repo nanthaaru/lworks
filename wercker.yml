@@ -21,7 +21,7 @@ build:
     # Read more about steps on our dev center:
     # http://devcenter.wercker.com/docs/steps/index.html
     steps:
-        - bundle install
+        - bundle-install
         - script:
             name: rspec
             code: bundle exec cucumber --format html --out reports.html features/workflow_1.feature features/workflow_2.feature --format progress
